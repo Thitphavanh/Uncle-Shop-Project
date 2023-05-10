@@ -1,0 +1,105 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+body {
+  font-family: "Kanit", sans-serif;
+  font-size: 16px;
+  font-weight: normal;
+  background: #000000;
+  height: 100%;
+  font-family: Arial;
+}
+
+.text-color-black {
+  color: black;
+}
+.text-color-white {
+  color: white;
+}
+
+a {
+  font-family: "Kanit", sans-serif;
+  font-size: 18px;
+}
+
+.text-center {
+  color: white;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: #f2f2f2;
+}
+
+th,
+td {
+  border: 1px solid #ff4500;
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+  background-color: coral;
+}
+
+th {
+  background-color: #eee;
+  color: black;
+  /* color: green; */
+}
+
+.button {
+  background-color: #ff4500;
+  border: none;
+  color: white;
+  padding: 10px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+}
+
+.button-orange {
+  background-color: #ff4500;
+  border: none;
+  color: white;
+  padding: 10px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+}
+
+.button-red {
+  background-color: #ff0000;
+  border: none;
+  color: white;
+  padding: 10px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+}
+
+.button-green {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 10px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+}
+
+.button-black {
+  background-color: #000000;
+  border: none;
+  color: white;
+  padding: 10px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+}
