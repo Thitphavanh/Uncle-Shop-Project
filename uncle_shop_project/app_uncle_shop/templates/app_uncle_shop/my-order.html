@@ -1,0 +1,129 @@
+{% extends 'app_uncle_shop/index.html' %}
+{% load humanize %} 
+{% block content %}
+<html>
+  <head>
+<style>
+  .text-color {
+    color: white;
+  }
+  .button-orange{
+    background-color: #FF4500;
+    border: none;
+    color: white;
+    padding: 10px 28px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+  }
+  .button-green {
+    background-color: #4caf50;
+    border: none;
+    color: white;
+    padding: 10px 28px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+  }
+  .button-red {
+    background-color: #ff0000;
+    border: none;
+    color: white;
+    padding: 10px 28px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #f2f2f2;
+  }
+
+  th,
+  td {
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+
+  tr:hover {
+    background-color: coral;
+  }
+</style>
+
+<div class="container">
+  <div class="text-color">
+  <h3>ຂໍ້ມູນການຈັດສົ່ງ</h3>
+  <p>ORDER ID: {{order_pending.orderid}} </p>
+  <p>
+    ຊື່ຜູ້ຮັບ: {{order_pending.name}}<br />
+    ເບີໂທຜູ້ຮັບ: {{order_pending.tel}}<br />
+    ທີ່ຢູ່ຈັດສົ່ງ: {{order_pending.address}}<br />
+    {% if order_pending.shipping == 'hal' %} 
+        ຮູບແບບການຈັດສົ່ງ: HAL 
+    {% elif order_pending.shipping == 'mixay' %} 
+        ຮູບແບບການຈັດສົ່ງ: Mixay 
+    {% elif order_pending.shipping == 'anousit' %} 
+        ຮູບແບບການຈັດສົ່ງ: Anousit 
+    {% else %} 
+        ຮູບແບບການຈັດສົ່ງ: ຂົນສົ່ງອື່ນໆ 
+    {% endif %}<br />
+
+    {% if order_pending.payment == 'paynow' %} 
+        ຊຳລະຜ່ານ: ເກັບເງິນຕົ້ນທາງ 
+    {% elif order_pending.payment == 'cod' %} 
+        ຊຳລະຜ່ານ: ເກັບເງິນປາຍທາງ 
+    {% elif order_pending.payment == 'transfer' %} 
+        ຊຳລະຜ່ານ: ໂອນເງິນເຂົ້າບັນຊີທະນາຄານ
+    {% else %} 
+        ຊຳລະຜ່ານ: ຊຳລະຜ່ານຊ່ອງທາງອື່ນໆ 
+    {% endif %}<br />
+    ໝາຍເຫດ: {{order_pending.other}}<br />
+  </p>   
+
+</div>
+</div>
+<div class="container">
+  <div class="text-color">
+    <h3>ລາຍການສັ່ງຊື້ສິນຄ້າ</h3>
+  </div>
+  <table>
+      <tr>
+        <th>ID</th>
+        <th>PRODUCT NAME</th>
+        <th>PRICE</th>
+        <th>QUANTITY</th>
+        <th>TOTAL</th>
+      </tr>
+        {% for op in order_product %}
+      <tr>
+        <td>{{op.productid}}</td>
+        <td>{{op.productname}}</td>
+        <td>{{op.price|intcomma}}</td>
+        <td>{{op.quantity|intcomma}}</td>
+        <td>{{op.total|intcomma}}</td>
+      </tr>
+      {% endfor %}
+      <tr>
+        <td><h5>TOTAL</h5></td>
+        <td></td>
+        <td></td>
+        <td><h5>{{count|intcomma}}</h5></td>
+        <td><h5>{{total|intcomma}}</h5></td>
+      </tr>
+  </table>
+  <br>
+  <div class="text-color">
+    <h5>ຄ່າສົ່ງ: {{order_pending.shipping_cost|intcomma}} ກີບ</h5>
+    <h3>ລວມຍອດໂອນທັງໝົດ: {{total|add:order_pending.shipping_cost|intcomma}} ກີບ</h3>
+  </div>
+  <div style="padding: 10px"></div>
+ </div>
+</head>
+</html>
+
+{% endblock content %}

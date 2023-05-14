@@ -1,15 +1,144 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Uncle Shop</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="" />
-    <h1>Uncle Shop Official Website</h1>
-  </head>
-  <body>
-    <p>Uncle Shop</p>
-  </body>
-</html>
+{% extends 'app_uncle_shop/base.html' %} {% block content %}
+
+<div class="container-fluid mt-4">
+  <div class="text-color-white">
+    <h3>ສິ່ງປະດິດ ໂຕໃໝ່</h3>
+    <p>ທີ່ພວກເຮົາເປີດໂຕ ລ່າສຸດ</p>
+  </div>
+  <div class="row">
+    {% for pd in product %}
+
+    <div class="col-sm-4">
+      <div class="card" style="width: 400; height: 440; border-radius: 0;">
+        {% if pd.image %}
+        <img
+          class="card-img-top"
+          src="{{ pd.image.url }}"
+          width="400"
+          height="220"
+        />
+
+        /> {% elif pd.imageurl != None %}
+        <img
+          class="card-img-top"
+          src="{{ pd.imageurl }}"
+          width="400"
+          height="220"
+        />
+
+        {% else %}
+
+        <img
+          class="card-img-top"
+          src="/media/default.png"
+          width="400"
+          height="220"
+        />
+
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title font-weight-bold">
+            {{ pd.name|linebreaks|truncatechars_html:26 }}
+          </h5>
+
+          <p class="card-title">ລາຄາ {{ pd.price }} ກີບ/{{pd.unit}}</p>
+
+          <!-- <p>{{ pd.detail|linebreaks|truncatechars_html:40 }}</p> -->
+
+          {% if pd.quantity > 0 %}
+
+          <p >ຈຳນວນສິນຄ້າ {{pd.quantity}} {{pd.unit}}</p>
+
+          {% else %}
+
+          <p>
+            <font color="red"> ສິນຄ້າຍັງບໍ່ໄດ້ເປີດໂຕ ກະລຸນາສອບຖາມໄດ້</font>
+          </p>
+
+          {% endif %} {% if pd.instock == True %}
+
+          <a href="#" class="button-black">ສັ່ງຊື້</a>
+
+          {% else %}
+
+          <a href="#" class="button-orange">ສິນຄ້າຍັງຢູ່ໃນຂັ້ນຕອນການຜະລິດ</a>
+
+          {% endif %}
+        </div>
+      </div>
+      <br /><br />
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+<div class="container-fluid mt-4">
+  <div class="text-color-white">
+      <center>
+        <a href="{% url 'all-product-page' %}"> <h1>ສິ່ງປະດິດທັງໝົດຂອງພວກເຮົາ</h1></a>
+      </center>
+      <hr />
+    <h3>ສິ່ງປະດິດ ທີ່ເປີດໂຕໃໝ່</h3>
+    <p>ລ່າສຸດ ລູກຄ້າ ຕ້ອງສັ່ງຈອງກ່ອນລ່ວງໜ້າ</p>
+  </div>
+  <div class="row">
+    {% for pd in product %}
+    <div class="col-sm-4">
+      <div class="card" style="width: 400; height: 450px; border-radius: 0;">
+        {% if pd.image %}
+        <img
+          class="card-img-top"
+          src="{{ pd.image.url }}"
+          width="400"
+          height="220"
+        />
+
+        /> {% elif pd.imageurl != None %}
+        <img
+          class="card-img-top"
+          src="{{ pd.imageurl }}"
+          width="400"
+          height="220"
+        />
+
+        {% else %}
+
+        <img
+          class="card-img-top"
+          src="/media/default.png"
+          width="400"
+          height="220"
+        />
+
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title font-weight-bold">
+            {{ pd.name|linebreaks|truncatechars_html:30 }}
+          </h5>
+
+          <p>ລາຄາ {{ pd.price }} ກີບ/{{pd.unit}}</p>
+
+          <!-- <p>{{ pd.detail|linebreaks|truncatechars_html:40 }}</p> -->
+
+          {% if pd.quantity > 0 %}
+
+          <p>ສິນຄ້າທີ່ພວກເຮົາມີ {{pd.quantity}} {{pd.unit}}</p>
+
+          {% else %}
+
+          <p>
+            <font color="red"> ຕ້ອງການສັ່ງຈອງສິນຄ້າ ກະລຸນາສອບຖາມໄດ້</font>
+          </p>
+          <a href="#" class="button-orange">ສັ່ງຈອງລວງໜ້າໄດ້</a>
+
+          {% endif %}
+        </div>
+      </div>
+
+      <br /><br />
+    </div>
+    {% endfor %}
+  </div>
+  </div>
+{% endblock content %}

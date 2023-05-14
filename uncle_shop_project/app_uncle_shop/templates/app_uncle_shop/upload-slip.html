@@ -1,0 +1,145 @@
+{% extends 'app_uncle_shop/index.html' %} 
+{% load humanize %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<style>
+  .text-color {
+    color: black;
+  }
+  .button{
+    background-color: #FF4500;
+    border: none;
+    color: white;
+    padding: 10px 28px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+  }
+  body {
+    font-family: Arial;
+  }
+
+  input[type="text"],
+  select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    box-sizing: border-box;
+  }
+
+  input[type="date"],
+  select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    box-sizing: border-box;
+  }
+
+  textarea[id="detail"],
+  select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    box-sizing: border-box;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    background-color: #ff4500;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 0px;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #000000;
+  }
+
+  div.container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin-bottom: 40px;
+  }
+</style>
+<body>
+<div class="container">
+  <div class="text-color">
+    <h2>ອັພໂຫຼດໃບບິນ</h2>
+    <p>ID ຂອງທ່ານ: {{orderid}}<br>
+      ສົ່ງປະເພດ: {{order_pending_detail.shipping}} ຂົນສົ່ງ<br>
+      {% if order_pending_detail.payment|intcomma == 'cod' %}
+      ບວກຄ່າເກັບປາຍທາງ: 10,000 ກີບ<br>
+      {% endif %}
+      ຈຳນວນສິນຄ້າ: {{count|intcomma}} ລາຍການ<br>
+      ຍອດສິນຄ້າລວມ: {{total|intcomma}} ກີບ<br>
+      ຄ່າສົ່ງ: {{shipping_cost|intcomma}} ກີບ<br> 
+    </p>
+
+    <h3>
+      ລວມຍອດໂອນທັງໝົດ: {{grandtotal|intcomma}} ກີບ
+    </h3>
+    {% if order_pending_detail.slip %}
+
+    <img src="{{order_pending_detail.slip.url}} "  
+      width="150"
+      height="250">
+
+    {% else %}
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <div class="form-group">
+        <form action="/action_page.php"><
+        <label for="slip_time">ວັນເວລາທີ່ໂອນ:</label>
+        <input
+          type="date" 
+          id="slip_time"
+          placeholder="ວັນເວລາທີ່ໂອນ..."
+          name="slip_time"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="bank_account">ເລືອກທະນາຄານ:</label>
+        <select name="bank_account" id="bank_account" type="select">
+            <option value="BCEL One">BCEL One</option>
+            <option value="JDB">JDB</option>
+            <option value="LDB">LDB</option>
+            <option value="ອື່ນໆ">ອື່ນໆ</option>
+          </select>
+      </div> 
+
+      <div class="form-group">
+        <label for="upload_slip">ອັພໂຫຼດໃບບິນ:</label>
+        <input
+          type="file"
+          id="upload_slip"
+          placeholder="ອັພໂຫຼດໃບບິນ..."
+          name="upload_slip"
+        />
+      </div>
+      <button type="submit" class="button">Submit</button>
+    </form>
+  </form>
+  </div>
+  {% endif %}
+</div>
+</body>
+</html>
+{% endblock content %}

@@ -7,3 +7,7 @@ def home(request):
     preorder = AllProduct.objects.filter(quantity__lte=0)
     context = {'product': product, 'preorder': preorder}
     return render(request, 'app_uncle_shop/home.html', context)
+
+
+def about(request):
+    return render(request, 'app_uncle_shop/about.html')

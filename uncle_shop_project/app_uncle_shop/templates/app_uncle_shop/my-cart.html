@@ -1,0 +1,80 @@
+{% extends 'app_uncle_shop/index.html' %} {% load humanize %} {% block content %}
+<html>
+  <head>
+    {% if status == 'delete '%}
+    <div class="alert alert-danger">
+      <strong>ລົບສິນຄ້າສຳເລັດແລ້ວ!</strong> ຖ້າຫາກທ່ານ ຕ້ອງການທີ່ຈະສັ່ງຊື້ໃໝ່
+      ກະລຸນາໄປທີ່ໜ້ານະວັດຕະກຳທັງໝົດ.
+    </div>
+    {% endif %}
+    <br />
+
+    <div class="container">
+      <div class="text-color-white">
+        <h3>ກະຕ່າສິນຄ້າ</h3>
+      </div>
+      <table>
+          <tr>
+            <th>ID</th>
+            <th>PRODUCT NAME</th>
+            <th>TIME STAMP</th>
+            <th>DELETE</th>
+            <th>PRICE</th>
+            <th>QUANTITY</th>
+            <th>TOTAL</th>
+          </tr>
+          {% for pd in mycart %}
+          <tr>
+            <td>{{pd.productid}}</td>
+            <td>{{pd.productname}}</td>
+            <td>{{pd.stamp}}</td>
+            <td>
+              <form
+                method="POST"
+                id="form{{pd.productid}}"
+                onsubmit=" confirm('ທ່ານຢືນຢັນຕ້ອງການລົບ ຫຼື ບໍ?')"
+              >
+                {% csrf_token %}
+                <input
+                  type="hidden"
+                  name="productid"
+                  value="{{pd.productid}}"
+                />
+                <button
+                  type="submit"
+                  form="form{{pd.productid}}"
+                  class="button-red"
+                >
+                  ລົບ
+                </button>
+              </form>
+            </td>
+            <td>{{pd.price|intcomma}}</td>
+            <td>{{pd.quantity|intcomma}}</td>
+            <td>{{pd.total|intcomma}}</td>
+          </tr>
+          {% endfor %}
+          <tr>
+            <td><h5>TOTAL</h5></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><h5>{{count|intcomma}}</h5></td>
+            <td><h5>{{total|intcomma}}</h5></td>
+          </tr>
+      </table>
+      <div style="padding: 10px"></div>
+      <div class="row">
+        <div style="padding: 8px"></div>
+        <a href="{% url 'checkout-page' %}" class="button-orange">ສັ່ງຊື້</a>
+        <div style="padding: 10px"></div>
+        <a href="{% url 'my-cart-edit-page' %}" class="button-green"
+          >ແກ້ໄຂຈຳນວນ</a
+        >
+      </div>
+      <div style="padding: 20px"></div>
+    </div>
+  </head>
+</html>
+{% endblock content %}

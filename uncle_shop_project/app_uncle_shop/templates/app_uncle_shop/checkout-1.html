@@ -1,0 +1,193 @@
+{% extends 'app_uncle_shop/index.html' %} {% block content %}
+<!DOCTYPE html>
+<html>
+<style>
+  .text-color {
+    color: black;
+  }
+  .button-orange{
+    background-color: #FF4500;
+    border: none;
+    color: white;
+    padding: 10px 28px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+  }
+  body {
+    font-family: Arial;
+  }
+
+  input[type="text"],
+  select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    box-sizing: border-box;
+  }
+
+  input[type="password"],
+  select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    box-sizing: border-box;
+  }
+  textarea[id="address"],
+  select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    box-sizing: border-box;
+  }
+
+  textarea[id="other"],
+  select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    box-sizing: border-box;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    background-color: #ff4500;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 0px;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+
+  input[type="submit"]:hover {
+    background-color: #000000;
+  }
+
+  div.container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin-bottom: 40px;
+  }
+</style>
+<body>
+<div class="container">
+  <div class="text-color">
+    <h2>ຂໍ້ມູນການຈັດສົ່ງ</h2>
+    <p>ກະລຸນາ ຕື່ມຂໍ້ມູນ ການຈັດສົ່ງ</p>
+    <form method="POST">
+      {% csrf_token %}
+
+      <div class="form-group">
+        <form action="/action_page.php">
+        <label for="name">ຊື່ຜູ້ຮັບ:</label>
+        <input
+          type="text"
+          id="name"
+          placeholder="ຊື່ຜູ້ຮັບ..."
+          name="name"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="tel">ເບີໂທຜູ້ຮັບ:</label>
+        <input
+          type="text"
+          id="tel"
+          placeholder="ເບີໂທຜູ້ຮັບ..."
+          name="tel"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="address">ທີ່ຢູ່ຈັດສົ່ງ:</label>
+        <textarea
+          row="5"
+          id="address"
+          name="address"
+          placeholder="ທີ່ຢູ່ຈັດສົ່ງ..."
+        ></textarea>
+      </div>
+
+      <p>----------------------------------------</p>
+      <label>ເລືອກປະເພດການຈັດສົ່ງ</label>
+
+      <div class="form-check">
+        <label class="form-check-label" for="hal">
+          <input type="radio" name="shipping" id="hal" value="hal" />
+          HAL 8.000 LAK
+        </label>
+      </div>
+
+      <div class="form-check">
+        <label class="form-check-label" for="mixay">
+          <input type="radio" name="shipping" id="mixay" value="mixay" />
+          MIXAY 8.000 LAK
+        </label>
+      </div>
+
+      <div class="form-check">
+        <label class="form-check-label" for="anousit">
+          <input type="radio" name="shipping" id="anousit" value="anousit" />
+          Anousit 8.000 LAK
+        </label>
+      </div>
+
+      <p>----------------------------------------</p>
+      <label>ການຊຳລະເງິນ</label>
+
+      <div class="form-check">
+        <label class="form-check-label" for="paynow">
+          <input type="radio" name="payment" id="paynow" value="paynow" />
+          ເກັບເງິນຕົ້ນທາງ
+        </label>
+      </div>
+
+      <div class="form-check">
+        <label class="form-check-label" for="cod">
+          <input type="radio" name="payment" id="cod" value="cod" />
+          ເກັບເງິນປາຍທາງ
+        </label>
+      </div>
+
+      <div class="form-check">
+        <label class="form-check-label" for="transfer">
+          <input type="radio" name="payment" id="transfer" value="transfer" />
+          ໂອນເງິນຜ່ານທະນາຄານ
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label for="other">ໝາຍເຫດ:</label>
+        <textarea
+          row="5"
+          id="other"
+          name="other"
+          placeholder="ໝາຍເຫດ..."
+        ></textarea>
+      </div>
+      <input type="hidden" name="page" value="information" />
+      <button type="submit" class="button-orange">ໜ້າຕໍ່ໄປ</button>
+    </form>
+  </form>
+  </div>
+</div>
+</body>
+</html>
+{% endblock content %}

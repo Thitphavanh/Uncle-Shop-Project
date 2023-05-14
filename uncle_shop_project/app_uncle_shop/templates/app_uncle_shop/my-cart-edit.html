@@ -1,0 +1,106 @@
+{% extends 'app_uncle_shop/index.html' %} {% load humanize %} {% block content %}
+<html>
+  <head>
+    <style>
+      .text-color {
+        color: white;
+      }
+      .button-orange {
+        background-color: #ff4500;
+        border: none;
+        color: white;
+        padding: 10px 28px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+      }
+      .button-red {
+        background-color: #ff0000;
+        border: none;
+        color: white;
+        padding: 10px 28px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        background-color: #f2f2f2;
+      }
+
+      th,
+      td {
+        padding: 8px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+      }
+
+      tr:hover {
+        background-color: coral;
+      }
+    </style>
+
+    {%if status == 'delete'%}
+    <div class="alert alert-danger">
+      <strong>ລົບສິນຄ້າສຳເລັດແລ້ວ!</strong> ຖ້າຫາກທ່ານ ຕ້ອງການທີ່ຈະສັ່ງຊື້ໃໝ່
+      ກະລຸນາໄປທີ່ໜ້ານະວັດຕະກຳທັງໝົດ.
+    </div>
+    {% endif %}
+    <br />
+
+    <div class="container">
+      <div class="text-color">
+        <h3>ກະຕ່າສິນຄ້າ</h3>
+      </div>
+      <form method="POST" id="formsave">
+        {% csrf_token %}
+        <table class="table">
+          <tr>
+            <th>ID</th>
+            <th>PRODUCT NAME</th>
+            <th>PRICE</th>
+            <th>QUANTITY</th>
+          </tr>
+          {% for pd in mycart %}
+          <tr>
+            <td>{{pd.productid}}</td>
+            <td>{{pd.productname}}</td>
+            <td>{{pd.price|intcomma}}</td>
+            <td>
+              <input
+                type="text"
+                name="pd_{{pd.productid}}"
+                value="{{pd.quantity}}"
+              />
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+        <input type="hidden" name="checksave" value="checksave" />
+      </form>
+      <div class="row">
+        <div style="padding: 8px"></div>
+        <button type="submit" form="formsave" class="button-orange">
+          ຈັດເກັບ
+        </button>
+        <div style="padding: 10px"></div>
+        <form
+          id="formclear"
+          method="POST"
+          onsubmit="return confirm('ທ່ານຢືນຢັນຕ້ອງການລົບສິນຄ້າທັງໝົດ ຫຼື ບໍ?')"
+        >
+          {% csrf_token %}
+          <input type="hidden" name="clear" value="clear" />
+          <button type="submit" form="formclear" class="button-red">
+            ລົບທັງໝົດ
+          </button>
+        </form>
+      </div>
+      <div style="padding: 20px"></div>
+    </div>
+  </head>
+</html>
+{% endblock content %}

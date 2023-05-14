@@ -1,0 +1,137 @@
+{% extends 'app_uncle_shop/index.html' %} {% block content %}
+<!DOCTYPE html>
+<html>
+<style>
+
+
+  input[type="text"],
+  select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    box-sizing: border-box;
+  }
+
+  textarea[id="detail"],
+  select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    box-sizing: border-box;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    background-color: #ff4500;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 0px;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #000000;
+  }
+
+  div.container {
+    border-radius: 1px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin-bottom: 40px;
+  }
+</style>
+<body>
+<div class="container">
+  <div class="text-color-black">
+    <h2>ເພີ່ມສິນຄ້າໃນລະບົບ</h2>
+    <p>ສິນຄ້າຂອງພວກເຮົາ ສາມາດເຂົ້າໄປໃນລະບົບໄດ້ ສະເພາະ Admin</p>
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <div class="form-group">
+        <form action="/action_page.php">
+        <label for="name">ຊື່ສິນຄ້າ:</label>
+        <input
+          type="text"
+          id="name"
+          placeholder="ຕື່ມຊື່ສິນຄ້າ..."
+          name="name"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="price">ລາຄາ:</label>
+        <input
+          type="text"
+          id="price"
+          placeholder="ຕື່ມລາຄາ..."
+          name="price"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="detail">ລາຍລະອຽດ:</label>
+        <textarea
+          rows="5"
+          id="detail"
+          placeholder="ຕື່ມລາຍລະອຽດ..."
+          name="detail"
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="imageurl">ເລືອກທີ່ຢູ່ຮູບພາບ:</label>
+        <input
+          type="text"
+          id="imageurl"
+          placeholder="ຕື່ມທີ່ຢູ່ຮູບພາບ..."
+          name="imageurl"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="quantity">ຈຳນວນສິນຄ້າ:</label>
+        <input
+          type="text"
+          id="quantity"
+          placeholder="ຕື່ມຈຳນວນສິນຄ້າ..."
+          name="quantity"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="unit">ໜ່ວຍສິນຄ້າ:</label>
+        <input
+          type="text"
+          id="unit"
+          placeholder="ຕື່ມໜ່ວຍສິນຄ້າ..."
+          name="unit"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="imageupload">ເລືອກຮູບພາບ:</label>
+        <input
+          type="file"
+          id="imageupload"
+          placeholder="ຕື່ມທີ່ຢູ່ຮູບພາບ..."
+          name="imageupload"
+        />
+      </div>
+      <button type="submit" class="button">Submit</button>
+    </form>
+  </form>
+  </div>
+</div>
+</body>
+</html>
+{% endblock content %}

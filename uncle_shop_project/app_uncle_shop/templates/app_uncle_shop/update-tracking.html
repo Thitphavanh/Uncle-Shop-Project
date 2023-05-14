@@ -1,0 +1,164 @@
+{% extends 'app_uncle_shop/index.html' %} 
+{% load humanize %} 
+{% block content %}
+<!DOCTYPE html>
+<html>
+  <style>
+
+    <!-- .button {
+      background-color: #ff4500;
+      border: none;
+      color: white;
+      padding: 10px 28px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 14px;
+    } -->
+
+
+    input[type="text"],
+    select {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: block;
+      border: 1px solid #ccc;
+      border-radius: 0px;
+      box-sizing: border-box;
+    }
+
+    input[type="email"],
+    select {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: block;
+      border: 1px solid #ccc;
+      border-radius: 0px;
+      box-sizing: border-box;
+    }
+
+    input[type="password"],
+    select {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: block;
+      border: 1px solid #ccc;
+      border-radius: 0px;
+      box-sizing: border-box;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      background-color: #ff4500;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 0px;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #000000;
+    }
+
+    div.container {
+      border-radius: 1px;
+      background-color: #f2f2f2;
+      padding: 20px;
+      margin-bottom: 40px;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <div class="text-color">
+      <h3>ຂໍ້ມູນການຈັດຊື້ຂອງລູກຄ້າ</h3>
+      <p>ORDER ID: {{order_pending.orderid}} </p>
+      <p>
+        ຊື່ຜູ້ຮັບ: {{order_pending.name}}<br />
+        ເບີໂທຜູ້ຮັບ: {{order_pending.tel}}<br />
+        ທີ່ຢູ່ຈັດສົ່ງ: {{order_pending.address}}<br />
+        {% if order_pending.shipping == 'hal' %} 
+            ຮູບແບບການຈັດສົ່ງ: HAL 
+        {% elif order_pending.shipping == 'mixay' %} 
+            ຮູບແບບການຈັດສົ່ງ: Mixay 
+        {% elif order_pending.shipping == 'anousit' %} 
+            ຮູບແບບການຈັດສົ່ງ: Anousit 
+        {% else %} 
+            ຮູບແບບການຈັດສົ່ງ: ຂົນສົ່ງອື່ນໆ 
+        {% endif %}<br />
+    
+        {% if order_pending.payment == 'paynow' %} 
+            ຊຳລະຜ່ານ: ເກັບເງິນຕົ້ນທາງ 
+        {% elif order_pending.payment == 'cod' %} 
+            ຊຳລະຜ່ານ: ເກັບເງິນປາຍທາງ 
+        {% elif order_pending.payment == 'transfer' %} 
+            ຊຳລະຜ່ານ: ໂອນເງິນເຂົ້າບັນຊີທະນາຄານ
+        {% else %} 
+            ຊຳລະຜ່ານ: ຊຳລະຜ່ານຊ່ອງທາງອື່ນໆ 
+        {% endif %}<br />
+        ໝາຍເຫດ: {{order_pending.other}}
+      </p>   
+      </div>
+
+      <div class="text-color">
+        <!-- <h3>ລາຍການສັ່ງຊື້ສິນຄ້າ</h3> -->
+      </div>
+      <table>
+          <tr>
+            <th>ID</th>
+            <th>PRODUCT NAME</th>
+            <th>PRICE</th>
+            <th>QUANTITY</th>
+            <th>TOTAL</th>
+          </tr>
+            {% for op in order_product %}
+          <tr>
+            <td>{{op.productid}}</td>
+            <td>{{op.productname}}</td>
+            <td>{{op.price|intcomma}}</td>
+            <td>{{op.quantity|intcomma}}</td>
+            <td>{{op.total|intcomma}}</td>
+          </tr>
+          {% endfor %}
+          <tr>
+            <td><h5>TOTAL</h5></td>
+            <td></td>
+            <td></td>
+            <td><h5>{{count|intcomma}}</h5></td>
+            <td><h5>{{total|intcomma}}</h5></td>
+          </tr>
+      </table>
+      <div style="padding: 10px"></div>
+      <div class="text-color-black">
+        <!-- <h3>ກວດສອບເລກ ຂົນສົ່ງ</h3> -->
+        <form method="POST">
+          {% csrf_token %}
+
+          <div class="form-group">
+          <form action="/action_page.php">
+            <label for="tracking_number">ເລກຂົນສົ່ງ:</label>
+            <input
+              type="text"
+              id="tracking_number"
+              placeholder="ຕື່ມເລກຂົນສົ່ງ..."
+              name="tracking_number"
+            />
+          </div>
+          <button type="submit" class="button">Submit</button>
+        </form>
+        </form>
+        <br>
+        <div class="text-color">
+          <h5>ຄ່າສົ່ງ: {{order_pending.shipping_cost|intcomma}} ກີບ</h5>
+          <h3>ລວມຍອດໂອນທັງໝົດ: {{total|add:order_pending.shipping_cost|intcomma}} ກີບ</h3>
+        </div>
+      </div>
+  </body>
+</html>
+{% endblock content %}
+

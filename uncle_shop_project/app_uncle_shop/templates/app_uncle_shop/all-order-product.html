@@ -1,0 +1,80 @@
+{% extends 'app_uncle_shop/index.html' %} 
+{% load humanize %} 
+{% block content %}
+<html>
+  <head>
+    <div class="container">
+      <div class="text-color-black">
+        <div class="text-color-white">
+          <h3>ລາຍການສັ່ງຊື້ທັງໝົດ (admin)</h3>
+        </div>
+        <table>
+          <tr style="font-size: 14px;">
+            <th>ORDER ID</th>
+            <th>NAME</th>
+            <th>DATE TIME</th>
+            <th>TRACKING NO.</th>
+            <th>COST</th>
+            <th>TOTAL</th>
+            <th>ALL TOTAL</th>
+            <th>SLIP</th>
+            <th>PAID</th>
+          </tr>
+          {% for od in allorder %}
+          <tr style="font-size: 14px;">
+            <td><a href="{% url 'update-tracking-page' od.orderid %}" style="font-size: 14px;">{{od.orderid}}</a> </td>
+            <td>{{od.name}}</td>
+            <td>{{od.stamp}}</td>
+            <td>
+              {% if od.tracking_number != None %}
+                {{od.tracking_number}}
+              {% endif %}
+            </td>
+            <td>
+              {{od.shipping_cost|intcomma}}
+            </td>
+            <td>{{od.total|intcomma}}</td>
+            <td>
+              {{od.total|add:od.shipping_cost|intcomma}}
+            </td>
+            <td>
+              {% if od.slip %} 
+              <a href="{{od.slip.url}}">
+                <i class="fa fa-address-card-o" 
+                style="font-size:14px;color:orangered;">
+                ເບິ່ງໃບບິນ
+                </i>
+              </a>
+              {% else %}
+              <!-- <a href="#">ອັພໂຫຼດໃບບິນ</a> -->
+              <i class="fa fa-close" 
+              style="font-size:14px;color:darkred;"> 
+              ຍັງບໍ່ທັນອັພໂຫຼດ
+              </i>
+              {% endif %}
+            </td>
+            <td>
+            {% if od.paid and od.slip %}
+					  <a href="{% url 'update-status-page' od.orderid 'cancel' %}"><i class="fa fa-check-square-o"
+							style="font-size:14px;color:green;"> ຈ່າຍແລ້ວ</i></a>
+
+					  {% elif od.paid == False and not od.slip %}
+
+					  <i class="fa fa-close" style="font-size:14px;color:darkred;"> ຍັງບໍ່ທັນຈ່າຍ</i>
+
+					  {% else %}
+
+					  <a href="{% url 'update-status-page' od.orderid 'confirm' %}"><i class="fa fa-check"
+							style="font-size:14px;color:darkblue;"> ຍືນຍັນ</i></a>
+
+					  {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+    <div style="padding: 20px"></div>
+  </head>
+</html>
+{% endblock content %}

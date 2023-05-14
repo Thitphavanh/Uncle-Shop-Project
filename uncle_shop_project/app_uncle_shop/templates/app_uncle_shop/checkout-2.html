@@ -1,0 +1,136 @@
+{% extends 'app_uncle_shop/index.html' %}
+{% load humanize %} 
+{% block content %}
+<html>
+  <head>
+<style>
+  .text-color {
+    color: white;
+  }
+  .button-orange{
+    background-color: #FF4500;
+    border: none;
+    color: white;
+    padding: 10px 28px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+  }
+  .button-green {
+    background-color: #4caf50;
+    border: none;
+    color: white;
+    padding: 10px 28px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+  }
+  .button-red {
+    background-color: #ff0000;
+    border: none;
+    color: white;
+    padding: 10px 28px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #f2f2f2;
+  }
+
+  th,
+  td {
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+
+  tr:hover {
+    background-color: coral;
+  }
+</style>
+
+<div class="container">
+  <div class="text-color">
+  <h3>ຂໍ້ມູນການຈັດສົ່ງ</h3>
+  <p>
+    ຊື່ຜູ້ຮັບ: {{name}}<br />
+    ເບີໂທຜູ້ຮັບ: {{tel}}<br />
+    ທີ່ຢູ່ຈັດສົ່ງ: {{address}}<br />
+    {% if shipping == 'hal' %} 
+        ຮູບແບບການຈັດສົ່ງ: HAL 
+    {% elif shipping == 'mixay' %} 
+        ຮູບແບບການຈັດສົ່ງ: Mixay 
+    {% elif shipping == 'anousit' %} 
+        ຮູບແບບການຈັດສົ່ງ: Anousit 
+    {% else %} 
+        ຮູບແບບການຈັດສົ່ງ: ຂົນສົ່ງອື່ນໆ 
+    {% endif %}<br />
+
+    {% if payment == 'paynow' %} 
+        ຊຳລະຜ່ານ: ເກັບເງິນຕົ້ນທາງ 
+    {% elif payment == 'cod' %} 
+        ຊຳລະຜ່ານ: ເກັບເງິນປາຍທາງ 
+    {% elif payment == 'transfer' %} 
+        ຊຳລະຜ່ານ: ໂອນເງິນເຂົ້າບັນຊີທະນາຄານ
+    {% else %} 
+        ຊຳລະຜ່ານ: ຊຳລະຜ່ານຊ່ອງທາງອື່ນໆ 
+    {% endif %}<br />
+    ໝາຍເຫດ: {{other}}<br />
+  </p>   
+
+</div>
+</div>
+<div class="container">
+  <div class="text-color">
+    <h3>ລາຍການສັ່ງຊື້ສິນຄ້າ</h3>
+  </div>
+  <table>
+      <tr>
+        <th>ID</th>
+        <th>PRODUCT NAME</th>
+        <th>PRICE</th>
+        <th>QUANTITY</th>
+        <th>TOTAL</th>
+      </tr>
+        {% for pd in mycart %}
+      <tr>
+        <td>{{pd.productid}}</td>
+        <td>{{pd.productname}}</td>
+        <td>{{pd.price|intcomma}}</td>
+        <td>{{pd.quantity|intcomma}}</td>
+        <td>{{pd.total|intcomma}}</td>
+      </tr>
+      {% endfor %}
+      <tr>
+        <td><h5>TOTAL</h5></td>
+        <td></td>
+        <td></td>
+        <td><h5>{{count|intcomma}}</h5></td>
+        <td><h5>{{total|intcomma}}</h5></td>
+      </tr>
+  </table>
+  <div style="padding: 10px"></div>
+
+  <form method="POST">
+    {% csrf_token %}
+    <input type="hidden" id="name" name="name" value="{{name}}" />
+    <input type="hidden" id="tel" name="tel" value="{{tel}}" />
+    <input type="hidden" id="address" name="address" value="{{address}}" />
+    <input type="hidden" id="shipping" name="shipping" value="{{shipping}}" />
+    <input type="hidden" id="payment" name="payment" value="{{payment}}" />
+    <input type="hidden" id="other" name="other" value="{{other}}" />
+    <input type="hidden" id="page" name="page" value="confirm" />
+    <button type="submit" class="button-orange">ຢືນຢັນ</button>
+    <div style="padding: 20px"></div>
+</form>
+</div>
+</head>
+</html>
+
+{% endblock content %}
