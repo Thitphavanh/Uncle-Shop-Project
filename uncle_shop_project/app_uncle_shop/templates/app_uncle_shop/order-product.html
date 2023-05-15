@@ -20,7 +20,7 @@
           </tr>
           {% for od in allorder %}
           <tr style="font-size: 14px;">
-            <td><a href="{% url 'my-order-page' od.orderid %}">{{od.orderid}}</a></td>
+            <td><a href="{% url 'my-order-page' od.orderid %}" style="font-size: 14px;">{{od.orderid}}</a></td>
             <td>{{od.stamp}}</td>
             <td>
               {% if od.tracking_number != None %}
