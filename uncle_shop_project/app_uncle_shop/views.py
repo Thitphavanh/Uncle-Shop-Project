@@ -200,7 +200,7 @@ def my_cart_edit(request):
         update_quan = Profile.objects.get(user=user)
         update_quan.cartquan = count
         update_quan.save()
-        return redirect('mycart-page')
+        return redirect('my-cart-page')
 
     mycart = Cart.objects.filter(user=user)
     context['mycart'] = mycart
@@ -289,21 +289,24 @@ def order_prodcut(request):
         od.total = total
         count = sum([o.quantity for o in order_product])
 
-        if od.shipping == 'hal':
+        if od.shipping == 'flash':
             shipping_cost = sum(
-                [8000 if i == 0 else 5000 for i in range(count)])
-        elif od.shipping == 'mixay':
+                [20 if i == 0 else 10 for i in range(count)])
+        elif od.shipping == 'kerry':
             shipping_cost = sum(
-                [8000 if i == 0 else 4000 for i in range(count)])
-        elif od.shipping == 'anousit':
+                [20 if i == 0 else 8 for i in range(count)])
+        elif od.shipping == '่j&t':
             shipping_cost = sum(
-                [8000 if i == 0 else 4000 for i in range(count)])
+                [20 if i == 0 else 9 for i in range(count)])
+        elif od.shipping == '่thailandpost':
+            shipping_cost = sum(
+                [20 if i == 0 else 12 for i in range(count)])
         else:
             shipping_cost = sum(
-                [10000 if i == 0 else 3000 for i in range(count)])
+                [20 if i == 0 else 11 for i in range(count)])
 
         if od.payment == 'cod':
-            shipping_cost += 10000
+            shipping_cost += 10
         od.shipping_cost = shipping_cost
 
     context['allorder'] = order_pending
@@ -322,21 +325,24 @@ def all_order_prodcut(request):
         od.total = total
         count = sum([o.quantity for o in order_product])
 
-        if od.shipping == 'hal':
+        if od.shipping == 'flash':
             shipping_cost = sum(
-                [8000 if i == 0 else 5000 for i in range(count)])
-        elif od.shipping == 'mixay':
+                [20 if i == 0 else 10 for i in range(count)])
+        elif od.shipping == 'kerry':
             shipping_cost = sum(
-                [8000 if i == 0 else 4000 for i in range(count)])
-        elif od.shipping == 'anousit':
+                [20 if i == 0 else 8 for i in range(count)])
+        elif od.shipping == '่j&t':
             shipping_cost = sum(
-                [8000 if i == 0 else 4000 for i in range(count)])
+                [20 if i == 0 else 9 for i in range(count)])
+        elif od.shipping == '่thailandpost':
+            shipping_cost = sum(
+                [20 if i == 0 else 12 for i in range(count)])
         else:
             shipping_cost = sum(
-                [10000 if i == 0 else 3000 for i in range(count)])
+                [20 if i == 0 else 11 for i in range(count)])
 
         if od.payment == 'cod':
-            shipping_cost += 10000
+            shipping_cost += 10
         od.shipping_cost = shipping_cost
 
     context['allorder'] = order_pending
@@ -368,17 +374,19 @@ def upload_slip(request, orderid):
     order_pending_detail = OrderPending.objects.get(orderid=orderid)
     count = sum([o.quantity for o in order_product])
 
-    if order_pending_detail.shipping == 'hal':
-        shipping_cost = sum([8000 if i == 0 else 5000 for i in range(count)])
-    elif order_pending_detail.shipping == 'mixay':
-        shipping_cost = sum([8000 if i == 0 else 4000 for i in range(count)])
-    elif order_pending_detail.shipping == 'anousit':
-        shipping_cost = sum([8000 if i == 0 else 4000 for i in range(count)])
+    if order_pending_detail.shipping == 'flash':
+        shipping_cost = sum([20 if i == 0 else 10 for i in range(count)])
+    elif order_pending_detail.shipping == 'kerry':
+        shipping_cost = sum([20 if i == 0 else 8 for i in range(count)])
+    elif order_pending_detail.shipping == 'j&t':
+        shipping_cost = sum([20 if i == 0 else 9 for i in range(count)])
+    elif order_pending_detail.shipping == '่thailandpost':
+        shipping_cost = sum([20 if i == 0 else 12 for i in range(count)])
     else:
-        shipping_cost = sum([10000 if i == 0 else 3000 for i in range(count)])
+        shipping_cost = sum([20 if i == 0 else 11 for i in range(count)])
 
     if order_pending_detail.payment == 'cod':
-        shipping_cost += 10000
+        shipping_cost += 10
 
     context = {'orderid': orderid,
                'total': total,
@@ -421,21 +429,24 @@ def update_tracking(request, orderid):
     order_pending.total = total
     count = sum([o.quantity for o in order_product])
 
-    if order_pending.shipping == 'hal':
+    if order_pending.shipping == 'flash':
         shipping_cost = sum(
-            [8000 if i == 0 else 5000 for i in range(count)])
-    elif order_pending.shipping == 'mixay':
+            [20 if i == 0 else 10 for i in range(count)])
+    elif order_pending.shipping == 'kerry':
         shipping_cost = sum(
-            [8000 if i == 0 else 4000 for i in range(count)])
-    elif order_pending.shipping == 'anousit':
+            [20 if i == 0 else 8 for i in range(count)])
+    elif order_pending.shipping == '่j&t':
         shipping_cost = sum(
-            [8000 if i == 0 else 4000 for i in range(count)])
+            [20 if i == 0 else 9 for i in range(count)])
+    elif order_pending.shipping == '่thailandpost':
+        shipping_cost = sum(
+            [20 if i == 0 else 12 for i in range(count)])
     else:
         shipping_cost = sum(
-            [10000 if i == 0 else 3000 for i in range(count)])
+            [20 if i == 0 else 11 for i in range(count)])
 
     if order_pending.payment == 'cod':
-        shipping_cost += 10000
+        shipping_cost += 10
     order_pending.shipping_cost = shipping_cost
 
     context = {"order_pending": order_pending,
@@ -459,21 +470,24 @@ def my_order(request, orderid):
     order_pending.total = total
     count = sum([o.quantity for o in order_product])
 
-    if order_pending.shipping == 'hal':
+    if order_pending.shipping == 'flash':
         shipping_cost = sum(
-            [8000 if i == 0 else 5000 for i in range(count)])
-    elif order_pending.shipping == 'mixay':
+            [20 if i == 0 else 10 for i in range(count)])
+    elif order_pending.shipping == 'kerry':
         shipping_cost = sum(
-            [8000 if i == 0 else 4000 for i in range(count)])
-    elif order_pending.shipping == 'anousit':
+            [20 if i == 0 else 8 for i in range(count)])
+    elif order_pending.shipping == '่j&t':
         shipping_cost = sum(
-            [8000 if i == 0 else 4000 for i in range(count)])
+            [20 if i == 0 else 9 for i in range(count)])
+    elif order_pending.shipping == '่thailandpost':
+        shipping_cost = sum(
+            [20 if i == 0 else 12 for i in range(count)])
     else:
         shipping_cost = sum(
-            [10000 if i == 0 else 3000 for i in range(count)])
+            [20 if i == 0 else 11 for i in range(count)])
 
     if order_pending.payment == 'cod':
-        shipping_cost += 10000
+        shipping_cost += 10
     order_pending.shipping_cost = shipping_cost
 
     context = {"order_pending": order_pending,

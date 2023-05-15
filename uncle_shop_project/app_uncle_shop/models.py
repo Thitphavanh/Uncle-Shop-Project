@@ -6,8 +6,8 @@ from django.contrib.auth.models import User
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     photo = models.ImageField(upload_to="photoprofile", null=True, blank=True, default='default.png')
-    user_type = models.CharField(max_length=100, default='member')
-    cart_quantity = models.IntegerField(default=0)
+    usertype = models.CharField(max_length=100, default='member')
+    cartquan = models.IntegerField(default=0)
 
     def __str__(self):
         return self.user.first_name
@@ -29,8 +29,8 @@ class AllProduct(models.Model):
 
 class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    product_id = models.CharField(max_length=100)
-    product_name = models.CharField(max_length=100)
+    productid = models.CharField(max_length=100)
+    productname = models.CharField(max_length=100)
     price = models.IntegerField()
     quantity = models.IntegerField()
     stamp = models.DateTimeField(auto_now_add=True, blank=True, null=True)
@@ -41,7 +41,7 @@ class Cart(models.Model):
 
 
 class OrderProduct(models.Model):
-    order_id = models.CharField(max_length=100)
+    orderid = models.CharField(max_length=100)
     product_id = models.CharField(max_length=100)
     product_name = models.CharField(max_length=100)
     price = models.IntegerField()
@@ -49,11 +49,11 @@ class OrderProduct(models.Model):
     total = models.IntegerField()
 
     def __str__(self):
-        return self.order_id
+        return self.orderid
 
 
 class OrderPending(models.Model):
-    order_id = models.CharField(max_length=100)
+    orderid = models.CharField(max_length=100)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     tel = models.CharField(max_length=100)
@@ -77,4 +77,4 @@ class OrderPending(models.Model):
     tracking_number = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
-        return self.order_id
+        return self.orderid

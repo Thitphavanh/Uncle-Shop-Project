@@ -7,8 +7,8 @@ admin.site.index_title = "Main Admin"
 
 
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ['id', 'user', 'photo', 'cart_quantity']
-    list_editable = ['photo', 'cart_quantity']
+    list_display = ['id', 'user', 'photo', 'cartquan']
+    list_editable = ['photo', 'cartquan']
 
 
 admin.site.register(Profile, ProfileAdmin)
@@ -31,7 +31,7 @@ admin.site.register(Cart, CartAdmin)
 
 
 class OrderProductAdmin(admin.ModelAdmin):
-    list_display = ['id', 'product_name', 'price', 'quantity']
+    list_display = ['id', 'price', 'quantity']
     list_editable = ['price', 'quantity']
 
 
