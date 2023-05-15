@@ -244,10 +244,10 @@ def check_out(request):
             mycart = Cart.objects.filter(user=user)
             member_id = str(user.id).zfill(4)
             date_time = datetime.now().strftime("%Y%m%d%H%M%S")
-            order_id = 'OD' + member_id + date_time
+            orderid = 'OD' + member_id + date_time
             for mc in mycart:
                 order_product = OrderProduct()
-                order_product.orderid = order_id
+                order_product.orderid = orderid
                 order_product.productid = mc.productid
                 order_product.productname = mc.productname
                 order_product.price = mc.price
@@ -256,7 +256,7 @@ def check_out(request):
                 order_product.save()
 
             order_pending = OrderPending()
-            order_pending.orderid = order_id
+            order_pending.orderid = orderid
             order_pending.user = user
             order_pending.name = name
             order_pending.tel = tel

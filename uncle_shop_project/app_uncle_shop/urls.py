@@ -19,3 +19,5 @@ urlpatterns = [
     path('updatetracking/<str:orderid>/', update_tracking, name='update-tracking-page'),
     path('myorder/<str:orderid>/', my_order, name='my-order-page'),
 ]
+
+#       <!-- {% block content %} {% endblock content %} -->

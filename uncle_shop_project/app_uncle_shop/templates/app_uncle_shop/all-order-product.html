@@ -1,6 +1,7 @@
 {% extends 'app_uncle_shop/index.html' %} 
 {% load humanize %} 
 {% block content %}
+<!DOCTYPE html>
 <html>
   <head>
     <div class="container">
@@ -22,7 +23,7 @@
           </tr>
           {% for od in allorder %}
           <tr style="font-size: 14px;">
-            <td><a href="{% url 'update-tracking-page' od.orderid %}" style="font-size: 14px;">{{od.orderid}}</a> </td>
+            <td><a href="{% url 'update-tracking-page' od.orderid %}" style="font-size: 14px;">{{od.orderid}}</a></td>
             <td>{{od.name}}</td>
             <td>{{od.stamp}}</td>
             <td>
@@ -77,4 +78,7 @@
     <div style="padding: 20px"></div>
   </head>
 </html>
-{% endblock content %}
+{% endblock content %} 
+
+
+
