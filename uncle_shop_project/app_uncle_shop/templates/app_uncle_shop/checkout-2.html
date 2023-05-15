@@ -57,46 +57,48 @@
 
 <div class="container">
   <div class="text-color">
-  <h3>ຂໍ້ມູນການຈັດສົ່ງ</h3>
+  <h3>ข้อมูลการจัดส่ง</h3>
   <p>
-    ຊື່ຜູ້ຮັບ: {{name}}<br />
-    ເບີໂທຜູ້ຮັບ: {{tel}}<br />
-    ທີ່ຢູ່ຈັດສົ່ງ: {{address}}<br />
-    {% if shipping == 'hal' %} 
-        ຮູບແບບການຈັດສົ່ງ: HAL 
-    {% elif shipping == 'mixay' %} 
-        ຮູບແບບການຈັດສົ່ງ: Mixay 
-    {% elif shipping == 'anousit' %} 
-        ຮູບແບບການຈັດສົ່ງ: Anousit 
+    ชื่อผู้รับ: {{name}}<br />
+    เบอร์โทรผู้รับ: {{tel}}<br />
+    ที่อยู่สำหรับการจัดส่ง: {{address}}<br />
+    {% if shipping == 'flash' %} 
+        ประเภทการจัดส่ง: Flash 
+    {% elif shipping == 'kerry' %} 
+        ประเภทการจัดส่ง: Kerry 
+    {% elif shipping == '่j&t' %} 
+        ประเภทการจัดส่ง: J&T 
+    {% elif shipping == '่thailandpost' %} 
+        ประเภทการจัดส่ง: Thailand Post
     {% else %} 
-        ຮູບແບບການຈັດສົ່ງ: ຂົນສົ່ງອື່ນໆ 
+        ประเภทการจัดส่ง: ขนส่งอื่นๆ 
     {% endif %}<br />
 
     {% if payment == 'paynow' %} 
-        ຊຳລະຜ່ານ: ເກັບເງິນຕົ້ນທາງ 
+        ชำระผ่าน: เก็บเงินต้นทาง 
     {% elif payment == 'cod' %} 
-        ຊຳລະຜ່ານ: ເກັບເງິນປາຍທາງ 
+        ชำระผ่าน: เก็บเงินปลายทาง 
     {% elif payment == 'transfer' %} 
-        ຊຳລະຜ່ານ: ໂອນເງິນເຂົ້າບັນຊີທະນາຄານ
+        ชำระผ่าน: โอนเงินเข้าบัญชีธนาคาร
     {% else %} 
-        ຊຳລະຜ່ານ: ຊຳລະຜ່ານຊ່ອງທາງອື່ນໆ 
+        ชำระผ่าน: ชำระผ่านช่องทางอื่นๆ 
     {% endif %}<br />
-    ໝາຍເຫດ: {{other}}<br />
+    หมายเหด: {{other}}<br />
   </p>   
 
 </div>
 </div>
 <div class="container">
   <div class="text-color">
-    <h3>ລາຍການສັ່ງຊື້ສິນຄ້າ</h3>
+    <h3>รายการสั่งซื้อสินค้า</h3>
   </div>
   <table>
       <tr>
-        <th>ID</th>
-        <th>PRODUCT NAME</th>
-        <th>PRICE</th>
-        <th>QUANTITY</th>
-        <th>TOTAL</th>
+        <th>ไอดี</th>
+        <th>ชื่อสินค้า</th>
+        <th>ราคา</th>
+        <th>จำนวน</th>
+        <th>ยอดรวม</th>
       </tr>
         {% for pd in mycart %}
       <tr>
@@ -108,7 +110,7 @@
       </tr>
       {% endfor %}
       <tr>
-        <td><h5>TOTAL</h5></td>
+        <td><h5>ยอดรวม</h5></td>
         <td></td>
         <td></td>
         <td><h5>{{count|intcomma}}</h5></td>
@@ -126,7 +128,7 @@
     <input type="hidden" id="payment" name="payment" value="{{payment}}" />
     <input type="hidden" id="other" name="other" value="{{other}}" />
     <input type="hidden" id="page" name="page" value="confirm" />
-    <button type="submit" class="button-orange">ຢືນຢັນ</button>
+    <button type="submit" class="button-orange">ยืนยัน</button>
     <div style="padding: 20px"></div>
 </form>
 </div>

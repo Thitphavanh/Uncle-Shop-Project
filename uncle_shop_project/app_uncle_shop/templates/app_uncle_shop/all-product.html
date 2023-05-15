@@ -2,8 +2,8 @@
 <div class="container">
   <div class="container-fluid mt-4">
     <div class="text-color-white">
-      <h3>ສິ່ງປະດິດ ທັງໝົດຂອງພວກເຮົາ</h3>
-      <p>ລາຍການ ສິ່ງປະດິດທີ່ພວກເຮົາກຳລັງພັດທະນາ</p>
+      <h3>สินค้าทั้งหมด</h3>
+      <p>สินค้าทั้งหมด ทีพวกเรามี</p>
     </div>
     <div class="row">
       {% for pd in product %}
@@ -41,16 +41,16 @@
               {{ pd.name|linebreaks|truncatechars_html:26 }}
             </h5>
 
-            <p>ລາຄາ {{ pd.price }} ກີບ/{{pd.unit}}</p>
+            <p>ราคา {{ pd.price }} บาท/{{pd.unit}}</p>
   
             {% if pd.quantity > 0 %}
 
-            <p>ຈຳນວນສິນຄ້າ {{pd.quantity}} {{pd.unit}}</p>
+            <p>จำนวน {{pd.quantity}} {{pd.unit}}</p>
 
             {% else %}
 
             <p>
-              <font color="red"> ສິນຄ້າຍັງບໍ່ໄດ້ເປີດໂຕ ກະລຸນາສອບຖາມໄດ້</font>
+              <font color="red">สินค้าหมด กรุณาสอบถาม</font>
             </p>
 
             {% endif %} {% if pd.instock == True %}
@@ -58,18 +58,18 @@
             {% if user.is_authenticated%}
 
             <a href="{% url 'add-to-cart-page' pd.id %}" class="button-black"
-              >ສັ່ງຊື້</a
+              >เพิ่มเข้าตะกร้า</a
             >
 
             {% else %}
 
-            <a href="{% url 'login'%}" class="button-black">ສັ່ງຊື້</a>
+            <a href="{% url 'login'%}" class="button-black">สั่งชื่อ</a>
 
             {% endif %}
             
             {% else %}
 
-            <a href="#" class="button-orange">ສິນຄ້າຍັງຢູ່ໃນຂັ້ນຕອນການຜະລິດ</a>
+            <a href="#" class="button-orange">สินค้าหมด</a>
 
             {% endif %}
        
@@ -83,35 +83,35 @@
     <ul class="pagination justify-content-end">
       {% if product.has_previous and product.has_next != True %}
       <li class="page-item"><a class="page-link" href="?page={{product.previous_page_number}}">
-        Previous </a>
+        หน้าก่อน </a>
       </li>
       <li class="page-item"><a class="page-link" href="?page={{product.number|add:-2}}">{{product.number|add:-2}}</a></li>
       <li class="page-item"><a class="page-link" href="?page={{product.number|add:-1}}">{{product.number|add:-1}}</a></li>
       <li class="page-item active"><a class="page-link" href="?page={{product.number}}">{{product.number}}</a></li>
-      <li class="page-item disabled"><a class="page-link" href=""> Next </a></li>
+      <li class="page-item disabled"><a class="page-link" href=""> หน้าถัดไป </a></li>
       {% endif %}
     
       {% if product.has_previous and product.has_next %}
       <li class="page-item"><a class="page-link" href="?page={{product.previous_page_number}}">
-        Previous </a>
+        หน้าก่อน </a>
       </li>
       <li class="page-item"><a class="page-link" href="?page={{product.number|add:-1}}">{{product.number|add:-1}}</a></li>
       <li class="page-item active"><a class="page-link" href="?page={{product.number}}">{{product.number}}</a></li>
       <li class="page-item"><a class="page-link"  href="?page={{product.number|add:1}}">{{product.number|add:1}}</a></li>
-      <li class="page-item"><a class="page-link"  href="?page={{product.next_page_number}}"> Next </a></li>
+      <li class="page-item"><a class="page-link"  href="?page={{product.next_page_number}}"> หน้าถัดไป </a></li>
       {% endif %}
     
       {% if product.has_next and product.has_previous != True %}
       <li class="page-item disabled"><a class="page-link" href="">
-        Previous </a>
+        หน้าก่อน </a>
       </li>
       <li class="page-item active"><a class="page-link" href="?page={{product.number}}">{{product.number}}</a></li>
       <li class="page-item"><a class="page-link" href="?page={{product.number|add:1}}">{{product.number|add:1}}</a></li>
       <li class="page-item"><a class="page-link" href="?page={{product.number|add:2}}">{{product.number|add:2}}</a></li>
-      <li class="page-item"><a class="page-link" href="?page={{product.next_page_number}}"> Next </a></li>
+      <li class="page-item"><a class="page-link" href="?page={{product.next_page_number}}"> หน้าถัดไป </a></li>
       {% endif %}
     </ul> 
-    <a class="pagination justify-content-end" <i style="font-size:18px;color:grey;"> ໜ້າ {{product.number}} ຈາກ {{product.paginator.num_pages}} </i></a>
+    <a class="pagination justify-content-end" <i style="font-size:18px;color:grey;"> หน้า {{product.number}} จาก {{product.paginator.num_pages}} </i></a>
     <div style="padding: 20px"></div>
   </div>
 </div>

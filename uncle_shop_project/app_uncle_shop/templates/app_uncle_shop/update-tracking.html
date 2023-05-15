@@ -76,32 +76,34 @@
   <body>
     <div class="container">
       <div class="text-color">
-      <h3>ຂໍ້ມູນການຈັດຊື້ຂອງລູກຄ້າ</h3>
-      <p>ORDER ID: {{order_pending.orderid}} </p>
+      <h3>ข้อมูลการจัดส่ง</h3>
+      <p>รหัสคำสั่งซื้อ: {{order_pending.orderid}} </p>
       <p>
-        ຊື່ຜູ້ຮັບ: {{order_pending.name}}<br />
-        ເບີໂທຜູ້ຮັບ: {{order_pending.tel}}<br />
-        ທີ່ຢູ່ຈັດສົ່ງ: {{order_pending.address}}<br />
-        {% if order_pending.shipping == 'hal' %} 
-            ຮູບແບບການຈັດສົ່ງ: HAL 
-        {% elif order_pending.shipping == 'mixay' %} 
-            ຮູບແບບການຈັດສົ່ງ: Mixay 
-        {% elif order_pending.shipping == 'anousit' %} 
-            ຮູບແບບການຈັດສົ່ງ: Anousit 
+        ชื่อผู้รับ: {{order_pending.name}}<br />
+        เบอร์โทรผู้รับ: {{order_pending.tel}}<br />
+        ที่อยู่สำหรับการจัดส่ง: {{order_pending.address}}<br />
+        {% if order_pending.shipping == 'flash' %} 
+            ประเภทการจัดส่ง: Flash 
+        {% elif order_pending.shipping == 'kerry' %} 
+            ประเภทการจัดส่ง: Kerry 
+        {% elif order_pending.shipping == '่j&t' %} 
+            ประเภทการจัดส่ง: J&T
+        {% elif order_pending.shipping == '่thailandpost' %} 
+            ประเภทการจัดส่ง: Thailand Post
         {% else %} 
-            ຮູບແບບການຈັດສົ່ງ: ຂົນສົ່ງອື່ນໆ 
+            ประเภทการจัดส่ง: ขนส่งอื่นๆ  
         {% endif %}<br />
     
         {% if order_pending.payment == 'paynow' %} 
-            ຊຳລະຜ່ານ: ເກັບເງິນຕົ້ນທາງ 
+            ชำระผ่าน: เก็บเงินต้นทาง
         {% elif order_pending.payment == 'cod' %} 
-            ຊຳລະຜ່ານ: ເກັບເງິນປາຍທາງ 
+            ชำระผ่าน: เก็บเงินปลายทาง 
         {% elif order_pending.payment == 'transfer' %} 
-            ຊຳລະຜ່ານ: ໂອນເງິນເຂົ້າບັນຊີທະນາຄານ
+            ชำระผ่าน: โอนเงินเข้าบัญชีธนาคาร
         {% else %} 
-            ຊຳລະຜ່ານ: ຊຳລະຜ່ານຊ່ອງທາງອື່ນໆ 
+            ชำระผ่าน: ชำระผ่านช่องทางอื่นๆ 
         {% endif %}<br />
-        ໝາຍເຫດ: {{order_pending.other}}
+            หมายเหด: {{order_pending.other}}
       </p>   
       </div>
 
@@ -110,11 +112,11 @@
       </div>
       <table>
           <tr>
-            <th>ID</th>
-            <th>PRODUCT NAME</th>
-            <th>PRICE</th>
-            <th>QUANTITY</th>
-            <th>TOTAL</th>
+            <th>ไอดี</th>
+            <th>ชื่อสินค้า</th>
+            <th>ราคา</th>
+            <th>จำนวน</th>
+            <th>ยอดรวม</th>
           </tr>
             {% for op in order_product %}
           <tr>
@@ -126,7 +128,7 @@
           </tr>
           {% endfor %}
           <tr>
-            <td><h5>TOTAL</h5></td>
+            <td><h5>ยอดรวม</h5></td>
             <td></td>
             <td></td>
             <td><h5>{{count|intcomma}}</h5></td>
@@ -141,11 +143,11 @@
 
           <div class="form-group">
           <form action="/action_page.php">
-            <label for="tracking_number">ເລກຂົນສົ່ງ:</label>
+            <label for="tracking_number">หมายเลขพัสดุ:</label>
             <input
               type="text"
               id="tracking_number"
-              placeholder="ຕື່ມເລກຂົນສົ່ງ..."
+              placeholder="กรอกหมายเลขพัสดุ..."
               name="tracking_number"
             />
           </div>
@@ -154,8 +156,8 @@
         </form>
         <br>
         <div class="text-color">
-          <h5>ຄ່າສົ່ງ: {{order_pending.shipping_cost|intcomma}} ກີບ</h5>
-          <h3>ລວມຍອດໂອນທັງໝົດ: {{total|add:order_pending.shipping_cost|intcomma}} ກີບ</h3>
+          <h5>ค่าขนส่ง: {{order_pending.shipping_cost|intcomma}} บาท</h5>
+          <h3>ยอดโอนทั้งหมด: {{total|add:order_pending.shipping_cost|intcomma}} บาท</h3>
         </div>
       </div>
   </body>

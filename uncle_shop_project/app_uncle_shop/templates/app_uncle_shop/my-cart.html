@@ -3,25 +3,24 @@
   <head>
     {% if status == 'delete '%}
     <div class="alert alert-danger">
-      <strong>ລົບສິນຄ້າສຳເລັດແລ້ວ!</strong> ຖ້າຫາກທ່ານ ຕ້ອງການທີ່ຈະສັ່ງຊື້ໃໝ່
-      ກະລຸນາໄປທີ່ໜ້ານະວັດຕະກຳທັງໝົດ.
+      <strong>ลบรายการสำเร็จ!</strong> หากต้องการทำการสั่งซื้อใหม่ กรุณาติดต่อ Admin.
     </div>
     {% endif %}
     <br />
 
     <div class="container">
       <div class="text-color-white">
-        <h3>ກະຕ່າສິນຄ້າ</h3>
+        <h3>ตะกร้าสินค้า</h3>
       </div>
       <table>
           <tr>
-            <th>ID</th>
-            <th>PRODUCT NAME</th>
-            <th>TIME STAMP</th>
-            <th>DELETE</th>
-            <th>PRICE</th>
-            <th>QUANTITY</th>
-            <th>TOTAL</th>
+            <th>ไอดี</th>
+            <th>ชื่อสินค้า</th>
+            <th>เวลา</th>
+            <th>ลบ</th>
+            <th>ราคา</th>
+            <th>จำนวน</th>
+            <th>ยอดรวม</th>
           </tr>
           {% for pd in mycart %}
           <tr>
@@ -45,7 +44,7 @@
                   form="form{{pd.productid}}"
                   class="button-red"
                 >
-                  ລົບ
+                  ลบ
                 </button>
               </form>
             </td>
@@ -55,7 +54,7 @@
           </tr>
           {% endfor %}
           <tr>
-            <td><h5>TOTAL</h5></td>
+            <td><h5>ยอดรวมทั้งหมด</h5></td>
             <td></td>
             <td></td>
             <td></td>
@@ -67,10 +66,10 @@
       <div style="padding: 10px"></div>
       <div class="row">
         <div style="padding: 8px"></div>
-        <a href="{% url 'checkout-page' %}" class="button-orange">ສັ່ງຊື້</a>
+        <a href="{% url 'checkout-page' %}" class="button-orange">สั่งชื้อ</a>
         <div style="padding: 10px"></div>
         <a href="{% url 'my-cart-edit-page' %}" class="button-green"
-          >ແກ້ໄຂຈຳນວນ</a
+          >แก้ไขจำนวน</a
         >
       </div>
       <div style="padding: 20px"></div>

@@ -2,8 +2,8 @@
 
 <div class="container-fluid mt-4">
   <div class="text-color-white">
-    <h3>ສິ່ງປະດິດ ໂຕໃໝ່</h3>
-    <p>ທີ່ພວກເຮົາເປີດໂຕ ລ່າສຸດ</p>
+    <h3>สินค้าใหม่</h3>
+    <p>สินค้า ล่าสุด</p>
   </div>
   <div class="row">
     {% for pd in product %}
@@ -41,27 +41,27 @@
             {{ pd.name|linebreaks|truncatechars_html:26 }}
           </h5>
 
-          <p class="card-title">ລາຄາ {{ pd.price }} ກີບ/{{pd.unit}}</p>
+          <p class="card-title">ราคา {{ pd.price }} บาท/{{pd.unit}}</p>
 
           <!-- <p>{{ pd.detail|linebreaks|truncatechars_html:40 }}</p> -->
 
           {% if pd.quantity > 0 %}
 
-          <p >ຈຳນວນສິນຄ້າ {{pd.quantity}} {{pd.unit}}</p>
+          <p >จำนวนสินค้า {{pd.quantity}} {{pd.unit}}</p>
 
           {% else %}
 
           <p>
-            <font color="red"> ສິນຄ້າຍັງບໍ່ໄດ້ເປີດໂຕ ກະລຸນາສອບຖາມໄດ້</font>
+            <font color="red">ขออภัย สินค้าหมด</font>
           </p>
 
           {% endif %} {% if pd.instock == True %}
 
-          <a href="#" class="button-black">ສັ່ງຊື້</a>
+          <a href="#" class="button-black">สั่งชื่อ</a>
 
           {% else %}
 
-          <a href="#" class="button-orange">ສິນຄ້າຍັງຢູ່ໃນຂັ້ນຕອນການຜະລິດ</a>
+          <a href="#" class="button-orange">กำลังเพิ่มสินค้า</a>
 
           {% endif %}
         </div>
@@ -76,11 +76,11 @@
 <div class="container-fluid mt-4">
   <div class="text-color-white">
       <center>
-        <a href="{% url 'all-product-page' %}"> <h1>ສິ່ງປະດິດທັງໝົດຂອງພວກເຮົາ</h1></a>
+        <a href="{% url 'all-product-page' %}"> <h1>สินค้าทั้งหมดของพวกเรา</h1></a>
       </center>
       <hr />
-    <h3>ສິ່ງປະດິດ ທີ່ເປີດໂຕໃໝ່</h3>
-    <p>ລ່າສຸດ ລູກຄ້າ ຕ້ອງສັ່ງຈອງກ່ອນລ່ວງໜ້າ</p>
+    <h3>สินค้าใหม่</h3>
+    <p>สินค้า ล่าสุด</p>
   </div>
   <div class="row">
     {% for pd in product %}
@@ -117,20 +117,20 @@
             {{ pd.name|linebreaks|truncatechars_html:30 }}
           </h5>
 
-          <p>ລາຄາ {{ pd.price }} ກີບ/{{pd.unit}}</p>
+          <p>ราคา {{ pd.price }} บาท/{{pd.unit}}</p>
 
           <!-- <p>{{ pd.detail|linebreaks|truncatechars_html:40 }}</p> -->
 
           {% if pd.quantity > 0 %}
 
-          <p>ສິນຄ້າທີ່ພວກເຮົາມີ {{pd.quantity}} {{pd.unit}}</p>
+          <p>จำนวนสินค้า {{pd.quantity}} {{pd.unit}}</p>
 
           {% else %}
 
           <p>
-            <font color="red"> ຕ້ອງການສັ່ງຈອງສິນຄ້າ ກະລຸນາສອບຖາມໄດ້</font>
+            <font color="red">ต้องการสั่งซื้อสินค้า กรุณาสอบถามได้</font>
           </p>
-          <a href="#" class="button-orange">ສັ່ງຈອງລວງໜ້າໄດ້</a>
+          <a href="#" class="button-orange">สั่งซื้อล่วงหน้าได้</a>
 
           {% endif %}
         </div>

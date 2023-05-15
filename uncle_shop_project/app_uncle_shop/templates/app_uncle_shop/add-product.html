@@ -52,78 +52,78 @@
 <body>
 <div class="container">
   <div class="text-color-black">
-    <h2>ເພີ່ມສິນຄ້າໃນລະບົບ</h2>
-    <p>ສິນຄ້າຂອງພວກເຮົາ ສາມາດເຂົ້າໄປໃນລະບົບໄດ້ ສະເພາະ Admin</p>
+    <h2>เพิ่มสินค้า</h2>
+    <p>หน้านี้ดูได้เฉพาะ (Admin)</p>
     <form method="POST" enctype="multipart/form-data">
       {% csrf_token %}
 
       <div class="form-group">
         <form action="/action_page.php">
-        <label for="name">ຊື່ສິນຄ້າ:</label>
+        <label for="name">ชื่อสินค้า:</label>
         <input
           type="text"
           id="name"
-          placeholder="ຕື່ມຊື່ສິນຄ້າ..."
+          placeholder="ชื่อสินค้า..."
           name="name"
         />
       </div>
 
       <div class="form-group">
-        <label for="price">ລາຄາ:</label>
+        <label for="price">ราคา:</label>
         <input
           type="text"
           id="price"
-          placeholder="ຕື່ມລາຄາ..."
+          placeholder="ราคา..."
           name="price"
         />
       </div>
 
       <div class="form-group">
-        <label for="detail">ລາຍລະອຽດ:</label>
+        <label for="detail">รายละเอียด:</label>
         <textarea
           rows="5"
           id="detail"
-          placeholder="ຕື່ມລາຍລະອຽດ..."
+          placeholder="รายละเอียด..."
           name="detail"
         ></textarea>
       </div>
 
       <div class="form-group">
-        <label for="imageurl">ເລືອກທີ່ຢູ່ຮູບພາບ:</label>
+        <label for="imageurl">เลือก URL รูปภาพ:</label>
         <input
           type="text"
           id="imageurl"
-          placeholder="ຕື່ມທີ່ຢູ່ຮູບພາບ..."
+          placeholder="เลือก URL รูปภาพ..."
           name="imageurl"
         />
       </div>
 
       <div class="form-group">
-        <label for="quantity">ຈຳນວນສິນຄ້າ:</label>
+        <label for="quantity">จำนวน:</label>
         <input
           type="text"
           id="quantity"
-          placeholder="ຕື່ມຈຳນວນສິນຄ້າ..."
+          placeholder="จำนวน..."
           name="quantity"
         />
       </div>
 
       <div class="form-group">
-        <label for="unit">ໜ່ວຍສິນຄ້າ:</label>
+        <label for="unit">หน่วย:</label>
         <input
           type="text"
           id="unit"
-          placeholder="ຕື່ມໜ່ວຍສິນຄ້າ..."
+          placeholder="หน่วย..."
           name="unit"
         />
       </div>
 
       <div class="form-group">
-        <label for="imageupload">ເລືອກຮູບພາບ:</label>
+        <label for="imageupload">เลือกรูปภาพ:</label>
         <input
           type="file"
           id="imageupload"
-          placeholder="ຕື່ມທີ່ຢູ່ຮູບພາບ..."
+          placeholder="เลือกรูปภาพ..."
           name="imageupload"
         />
       </div>

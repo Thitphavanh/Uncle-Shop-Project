@@ -74,48 +74,48 @@
   <body>
     <div class="container">
       <div class="text-color-black">
-        <h2>ສະໝັກສະມາຊິກ</h2>
-        <p>ກະລຸນາ ຕື່ມຂໍ້ມູນ ສະໝັກສະມາຊິກ</p>
+        <h2>สมัครสมาชิก</h2>
+        <p>กรุณากรอกข้อมูล สมัครสมาชิก</p>
         <form method="POST">
           {% csrf_token %}
 
           <div class="form-group">
           <form action="/action_page.php">
-            <label for="first_name">ຊື່ແທ້:</label>
+            <label for="first_name">ชื่อจริง:</label>
             <input
               type="text"
               id="first_name"
-              placeholder="ຕື່ມຊື່ແທ້..."
+              placeholder="กรอกชื่อจริง..."
               name="first_name"
             />
           </div>
 
           <div class="form-group">
-            <label for="last_name">ນາມສະກຸນ:</label>
+            <label for="last_name">นามสกุล:</label>
             <input
               type="text"
               id="last_name"
-              placeholder="ຕື່ມນາມສະກຸນ..."
+              placeholder="กรอกนามสกุล..."
               name="last_name"
             />
           </div>
 
           <div class="form-group">
-            <label for="email">ອີເມລ໌:</label>
+            <label for="email">อีเมล์:</label>
             <input
               type="email"
               id="email"
-              placeholder="ຕື່ມອີເມລ໌..."
+              placeholder="กรอกอีเมล์..."
               name="email"
             />
           </div>
 
           <div class="form-group">
-            <label for="password">ລະຫັດຜ່ານ:</label>
+            <label for="password">รหัสผ่าน:</label>
             <input
               type="password"
               id="password"
-              placeholder="ຕື່ມລະຫັດຜ່ານ..."
+              placeholder="กรอกรหัสผ่าน..."
               name="password"
             />
           </div>

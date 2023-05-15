@@ -4,17 +4,17 @@
   <body>
     <div class="container">
       <div class="text-color-white">
-        <h3>ລາຍການສັ່ງຊື້ທັງໝົດ</h3>
+        <h3>รายการสั่งซื้อทั้งหมด</h3>
       </div>
       <table>
           <tr style="font-size: 14px;">
-            <th>ORDER ID</th>
-            <th>DATE TIME</th>
-            <th>TRACKING NO.</th>
-            <th>COST</th>
-            <th>TOTAL</th>
-            <th>ALL TOTAL</th>
-            <th>STATUS</th>
+            <th>รหัสคำสั่งซื้อ</th>
+            <th>เวลา</th>
+            <th>เลขพัสดุขนส่ง</th>
+            <th>ค่าขนส่ง</th>
+            <th>ยอดรวม</th>
+            <th>ยอดรวมทั้งหมด</th>
+            <th>สถานะ</th>
           </tr>
           {% for od in allorder %}
           <tr style="font-size: 14px;">
@@ -34,11 +34,11 @@
             </td>
             <td>
               {% if od.paid %} 
-              <i class="fa fa-check-square-o" style="font-size:14px;color:green;"> ຈ່າຍເງິນແລ້ວ </i>
+              <i class="fa fa-check-square-o" style="font-size:14px;color:green;"> จ่ายแล้ว </i>
               
               {% else %}
               <a href="{% url 'upload-slip-page' od.orderid %}" class="button-black">
-                ອັພໂຫຼດໃບບິນ
+                อัปโหลดใบบิล
               </a> 
               {% endif %}
             </td>

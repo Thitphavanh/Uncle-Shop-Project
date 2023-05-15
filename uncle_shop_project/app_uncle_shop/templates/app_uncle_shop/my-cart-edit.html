@@ -45,24 +45,23 @@
 
     {%if status == 'delete'%}
     <div class="alert alert-danger">
-      <strong>ລົບສິນຄ້າສຳເລັດແລ້ວ!</strong> ຖ້າຫາກທ່ານ ຕ້ອງການທີ່ຈະສັ່ງຊື້ໃໝ່
-      ກະລຸນາໄປທີ່ໜ້ານະວັດຕະກຳທັງໝົດ.
+      <strong>ลบรายการสำเร็จ!</strong> หากต้องการทำการสั่งซื้อใหม่ กรุณาติดต่อ Admin.
     </div>
     {% endif %}
     <br />
 
     <div class="container">
       <div class="text-color">
-        <h3>ກະຕ່າສິນຄ້າ</h3>
+        <h3>ตะกร้าสินค้า</h3>
       </div>
       <form method="POST" id="formsave">
         {% csrf_token %}
         <table class="table">
           <tr>
-            <th>ID</th>
-            <th>PRODUCT NAME</th>
-            <th>PRICE</th>
-            <th>QUANTITY</th>
+            <th>ไอดี</th>
+            <th>ชื่อสินค้า</th>
+            <th>ราคา</th>
+            <th>จำนวน</th>
           </tr>
           {% for pd in mycart %}
           <tr>
@@ -84,18 +83,18 @@
       <div class="row">
         <div style="padding: 8px"></div>
         <button type="submit" form="formsave" class="button-orange">
-          ຈັດເກັບ
+          จัดเก็บ
         </button>
         <div style="padding: 10px"></div>
         <form
           id="formclear"
           method="POST"
-          onsubmit="return confirm('ທ່ານຢືນຢັນຕ້ອງການລົບສິນຄ້າທັງໝົດ ຫຼື ບໍ?')"
+          onsubmit="return confirm('กดยืนยันเพื่อลบสินค้าทั้งหมด หรือ ไม่?')"
         >
           {% csrf_token %}
           <input type="hidden" name="clear" value="clear" />
           <button type="submit" form="formclear" class="button-red">
-            ລົບທັງໝົດ
+            ลบทั้งหมด
           </button>
         </form>
       </div>

@@ -89,101 +89,108 @@
 <body>
 <div class="container">
   <div class="text-color">
-    <h2>ຂໍ້ມູນການຈັດສົ່ງ</h2>
-    <p>ກະລຸນາ ຕື່ມຂໍ້ມູນ ການຈັດສົ່ງ</p>
+    <h2>ข้อมูลการจัดส่ง</h2>
+    <p>กรุณาป้อน ข้อมูลการจัดส่ง</p>
     <form method="POST">
       {% csrf_token %}
 
       <div class="form-group">
         <form action="/action_page.php">
-        <label for="name">ຊື່ຜູ້ຮັບ:</label>
+        <label for="name">ชื่อผู้รับ:</label>
         <input
           type="text"
           id="name"
-          placeholder="ຊື່ຜູ້ຮັບ..."
+          placeholder="ชื่อผู้รับ..."
           name="name"
         />
       </div>
 
       <div class="form-group">
-        <label for="tel">ເບີໂທຜູ້ຮັບ:</label>
+        <label for="tel">เบอร์โทรผู้รับ:</label>
         <input
           type="text"
           id="tel"
-          placeholder="ເບີໂທຜູ້ຮັບ..."
+          placeholder="เบอร์โทรผู้รับ..."
           name="tel"
         />
       </div>
 
       <div class="form-group">
-        <label for="address">ທີ່ຢູ່ຈັດສົ່ງ:</label>
+        <label for="address">ที่อยู่สำหรับการจัดส่ง:</label>
         <textarea
           row="5"
           id="address"
           name="address"
-          placeholder="ທີ່ຢູ່ຈັດສົ່ງ..."
+          placeholder="ที่อยู่สำหรับการจัดส่ง..."
         ></textarea>
       </div>
 
       <p>----------------------------------------</p>
-      <label>ເລືອກປະເພດການຈັດສົ່ງ</label>
+      <label>เลือกประเภทการจัดส่ง</label>
 
       <div class="form-check">
-        <label class="form-check-label" for="hal">
-          <input type="radio" name="shipping" id="hal" value="hal" />
-          HAL 8.000 LAK
+        <label class="form-check-label" for="flash">
+          <input type="radio" name="shipping" id="flash" value="flash" />
+          Flash 20 บาท
         </label>
       </div>
 
       <div class="form-check">
-        <label class="form-check-label" for="mixay">
-          <input type="radio" name="shipping" id="mixay" value="mixay" />
-          MIXAY 8.000 LAK
+        <label class="form-check-label" for="kerry">
+          <input type="radio" name="shipping" id="kerry" value="kerry" />
+          Kerry 20 บาท
         </label>
       </div>
 
       <div class="form-check">
-        <label class="form-check-label" for="anousit">
-          <input type="radio" name="shipping" id="anousit" value="anousit" />
-          Anousit 8.000 LAK
+        <label class="form-check-label" for="่j&t">
+          <input type="radio" name="shipping" id="่j&t" value="่j&t" />
+          ่J&T 20 บาท
+        </label>
+      </div>
+
+      <div class="form-check">
+        <label class="form-check-label" for="่thailandpost">
+          <input type="radio" name="shipping" id="่thailandpost" value="่thailandpost" />
+          ่Thailand Post 20 บาท
         </label>
       </div>
 
       <p>----------------------------------------</p>
-      <label>ການຊຳລະເງິນ</label>
+      <label>การชำระเงิน</label>
 
       <div class="form-check">
         <label class="form-check-label" for="paynow">
           <input type="radio" name="payment" id="paynow" value="paynow" />
-          ເກັບເງິນຕົ້ນທາງ
+          EMS
         </label>
       </div>
 
       <div class="form-check">
         <label class="form-check-label" for="cod">
           <input type="radio" name="payment" id="cod" value="cod" />
-          ເກັບເງິນປາຍທາງ
+          COD
         </label>
       </div>
 
       <div class="form-check">
         <label class="form-check-label" for="transfer">
           <input type="radio" name="payment" id="transfer" value="transfer" />
-          ໂອນເງິນຜ່ານທະນາຄານ
+          โอนจ่ายผ่านมือถือ
         </label>
       </div>
 
       <div class="form-group">
-        <label for="other">ໝາຍເຫດ:</label>
+        <label for="other">อื่นๆ:</label>
         <textarea
           row="5"
           id="other"
           name="other"
-          placeholder="ໝາຍເຫດ..."
+          placeholder="อื่นๆ..."
         ></textarea>
       </div>
       <input type="hidden" name="page" value="information" />
-      <button type="submit" class="button-orange">ໜ້າຕໍ່ໄປ</button>
+      <button type="submit" class="button-orange">หน้าถัดไป</button>
     </form>
   </form>
   </div>

@@ -70,7 +70,7 @@ class OrderPending(models.Model):
         choices=[('KBank', 'KBank'), ('SCB', 'SCB'),
                  ('TTB', 'TTB'), ('KTB', 'KTB'),
                  ('BBL', 'BBL'),('BAY', 'BAY'),
-                 ('BAY', 'BAY'),('อื่นๆ', 'อื่นๆ'),],
+                 ('อื่นๆ', 'อื่นๆ'),],
         default='KBank'
     )
     paymentid = models.CharField(max_length=100, null=True, blank=True)
