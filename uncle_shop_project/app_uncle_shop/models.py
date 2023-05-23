@@ -3,9 +3,19 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class VerifyEmail(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    token = models.CharField(max_length=100)
+    approved = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.user.user
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    photo = models.ImageField(upload_to="photoprofile", null=True, blank=True, default='default.png')
+    photo = models.ImageField(upload_to="photoprofile",
+                              null=True, blank=True, default='default.png')
     usertype = models.CharField(max_length=100, default='member')
     cartquan = models.IntegerField(default=0)
 
@@ -42,8 +52,8 @@ class Cart(models.Model):
 
 class OrderProduct(models.Model):
     orderid = models.CharField(max_length=100)
-    product_id = models.CharField(max_length=100)
-    product_name = models.CharField(max_length=100)
+    productid = models.CharField(max_length=100)
+    productname = models.CharField(max_length=100)
     price = models.IntegerField()
     quantity = models.IntegerField()
     total = models.IntegerField()
@@ -69,8 +79,8 @@ class OrderPending(models.Model):
         max_length=50,
         choices=[('KBank', 'KBank'), ('SCB', 'SCB'),
                  ('TTB', 'TTB'), ('KTB', 'KTB'),
-                 ('BBL', 'BBL'),('BAY', 'BAY'),
-                 ('อื่นๆ', 'อื่นๆ'),],
+                 ('BBL', 'BBL'), ('BAY', 'BAY'),
+                 ('อื่นๆ', 'อื่นๆ'), ],
         default='KBank'
     )
     paymentid = models.CharField(max_length=100, null=True, blank=True)

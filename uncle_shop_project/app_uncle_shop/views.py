@@ -411,7 +411,10 @@ def all_order_prodcut(request):
         if od.payment == 'cod':
             shipping_cost += 10
         od.shipping_cost = shipping_cost
-
+        
+    paginator = Paginator(order_pending, 4)
+    page = request.GET.get('page')
+    order_pending = paginator.get_page(page)
     context['allorder'] = order_pending
 
     return render(request, 'app_uncle_shop/all-order-product.html', context)
@@ -543,10 +546,10 @@ def my_order(request, orderid):
     elif order_pending.shipping == 'kerry':
         shipping_cost = sum(
             [20 if i == 0 else 8 for i in range(count)])
-    elif order_pending.shipping == '่j&t':
+    elif order_pending.shipping == 'j&t':
         shipping_cost = sum(
             [20 if i == 0 else 9 for i in range(count)])
-    elif order_pending.shipping == '่thailandpost':
+    elif order_pending.shipping == 'thailandpost':
         shipping_cost = sum(
             [20 if i == 0 else 12 for i in range(count)])
     else:
