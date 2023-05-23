@@ -17,9 +17,9 @@
     <link href="{% static 'css/style.css' %}" rel="stylesheet" />
   </head>
   <body>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <nav class="navbar navbar-expand-sm bg-lightblue navbar-lightblue">
       <a class="navbar-brand" href="{% url 'home-page' %}"
-        ><font color="red">Uncle Shop</font></a
+        ><font color="#2a9df4">Uncle Shop</font></a
       >
       <button
         class="navbar-toggler"
@@ -33,19 +33,19 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
             <a class="nav-link" href="{% url 'all-product-page' %}"
-              ><font color="white">สินค้าทั้งหมด</font>
+              ><font color="black">สินค้าทั้งหมด</font>
             </a>
           </li>
 
           <li class="nav-item">
             <a class="nav-link" href="{% url 'about-page' %}"
-              ><font color="white">เกี่ยวกับเรา</font>
+              ><font color="black">เกี่ยวกับเรา</font>
             </a>
           </li>
 
           <li class="nav-item">
             <a class="nav-link" href="{% url 'contact-page' %}"
-              ><font color="white">ติดต่อเรา</font></a
+              ><font color="black">ติดต่อเรา</font></a
             >
           </li>
 
@@ -58,7 +58,7 @@
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
-              ><font color="white">ประเภทสินค้า</font></a
+              ><font color="black">ประเภทสินค้า</font></a
             >
 
             <div class="dropdown-menu" aria-labelledby="dropdown01">
@@ -72,15 +72,15 @@
           {% if user.is_authenticated and user.profile.usertype == 'member' %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'order-product-page' %}"
-              ><font color="white">รายการสั่งซื้อทั้งหมด</font>
+              ><font color="black">รายการสั่งซื้อทั้งหมด</font>
             </a>
           </li>
 
           <li class="nav-item">
             <a class="nav-link" href="{% url 'my-cart-page' %}"
-              ><font color="white">ตะกร้าสินค้า</font>
+              ><font color="black">ตะกร้าสินค้า</font>
               <span class="badge bg-primary"
-                ><font color="white">{{user.profile.cartquan}}</font></span
+                ><font color="black">{{user.profile.cartquan}}</font></span
               >
             </a>
           </li>
@@ -90,12 +90,12 @@
           {% if user.is_authenticated and user.profile.usertype == 'admin' %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'all-order-product-page' %}"
-              ><font color="white">รายการสั่งซื้อทั้งหมด</font>
+              ><font color="black">รายการสั่งซื้อทั้งหมด</font>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'add-product-page' %}">
-              <font color="white">เพิ่มสินค้า</font></a
+              <font color="black">เพิ่มสินค้า</font></a
             >
           </li>
           {% endif %}
@@ -110,17 +110,17 @@
           class="rounded-circle"
         />&nbsp&nbsp
 
-        <p style="color: red; margin: 5px">
+        <p style="color: #2a9df4; margin: 5px">
           สวัสดี! {{user.first_name}} {{user.last_name}}&nbsp&nbsp
         </p>
 
-        <a class="button-orange" href="{% url 'logout' %}">ออกจากระบบ</a>
+        <a class="button-blue" href="{% url 'logout' %}">ออกจากระบบ</a>
 
         {% else %}
 
-        <a class="button-orange" href="{% url 'register-page' %}">สมัครสมาชิก</a
+        <a class="button-blue" href="{% url 'register-page' %}">สมัครสมาชิก</a
         >&nbsp&nbsp&nbsp
-        <a class="button-orange" href="{% url 'login' %}">เข้าสู่ระบบ</a>
+        <a class="button-blue" href="{% url 'login' %}">เข้าสู่ระบบ</a>
 
         {% endif %}
       </div>

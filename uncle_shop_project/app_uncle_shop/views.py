@@ -7,6 +7,64 @@ from django.contrib.auth import authenticate, login
 from datetime import datetime
 from django.core.paginator import Paginator
 
+# def generate_token(domain="http://localhost:/8000/confirm/"):
+#     all_char = [chr(i) for i in range(65, 91)]
+#     all_char.extend([chr(i) for i in range(97, 123)])
+#     all_char.extend([str(i) for i in range(10)])
+
+#     email_token = ""
+#     for i in range(40):
+#         email_token += random.choice(all_char)
+#     url = domain + email_token
+#     return (url, email_token)
+
+
+# def confirm_email(request, token):
+#     try:
+#         check_token = VerifyEmail.objects.get(token=token)
+#         status = "Found"
+#         check_token.approved = True
+#         check_token.save()
+#         context = {'status': status, 'username': check_token.user.username,
+#                    'firstname': check_token.user.first_name}
+#     except:
+#         status = 'Not Found'
+#         context = {'status': status}
+
+#     return render(request, 'mywebsite/confirm-email.html', context)
+
+
+# def send_email(sendto, subj="Test email", detail="Hi!\nHow are you?\n"):
+#     my_email = 'opentechlaos@gmail.com'
+#     my_password = 'opentechlaos2023'
+#     receiver = sendto
+
+#     send_messenger = MIMEMultipart('alternative')
+#     send_messenger['Subject'] = subj
+#     send_messenger['From'] = 'Phenomenal Admin'
+#     send_messenger['To'] = receiver
+#     text = detail
+
+#     part1 = MIMEText(text, 'plain')
+#     send_messenger.attach(part1)
+
+#     s = smtplib.SMTP('smtp.gmail.com', 587)
+#     s.ehlo()
+#     s.starttls()
+#     s.login(my_email, my_password)
+#     s.sendmail(my_email, receiver.split(','), send_messenger.as_string())
+#     s.quit()
+
+
+# def confirm_send_email(email, name, token):
+#     subject = 'Hi!! Phenomenal Shop'
+#     new_member_name = name
+#     content = ''''
+#     I want to know your product
+#     '''
+#     link = token
+#     send_messenger = f'ສະບາຍ {new_member_name} \n\n {content} Verify Link: {link}'
+#     send_email(email, subject, send_messenger)
 
 def home(request):
     product = AllProduct.objects.all().order_by('id').reverse()[:3]
@@ -61,7 +119,7 @@ def add_product(request):
 def all_products(request):
     # product = AllProduct.objects.all()
     product = AllProduct.objects.all().order_by('id').reverse()
-    paginator = Paginator(product, 6)
+    paginator = Paginator(product, 3)
     page = request.GET.get('page')
     product = paginator.get_page(page)
     context = {'product': product}
@@ -87,6 +145,15 @@ def register(request):
         profile = Profile()
         profile.user = User.objects.get(username=email)
         profile.save()
+
+        # send_email(email, subject, send_messenger)
+        # token, token_code = generate_token()
+        # confirm_send_email(email, first_name, token)
+        # get_user = User.objects.get(username=email)
+        # add_verify = VerifyEmail()
+        # add_verify.user = get_user
+        # add_verify.token = token_code
+        # add_verify.save()
 
         user = authenticate(username=email, password=password)
         login(request, user)
@@ -435,10 +502,10 @@ def update_tracking(request, orderid):
     elif order_pending.shipping == 'kerry':
         shipping_cost = sum(
             [20 if i == 0 else 8 for i in range(count)])
-    elif order_pending.shipping == '่j&t':
+    elif order_pending.shipping == 'j&t':
         shipping_cost = sum(
             [20 if i == 0 else 9 for i in range(count)])
-    elif order_pending.shipping == '่thailandpost':
+    elif order_pending.shipping == 'thailandpost':
         shipping_cost = sum(
             [20 if i == 0 else 12 for i in range(count)])
     else:

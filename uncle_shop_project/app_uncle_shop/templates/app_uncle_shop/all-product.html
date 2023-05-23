@@ -2,7 +2,7 @@
 {% block content %}
 <div class="container">
   <div class="container-fluid mt-4">
-    <div class="text-color-white">
+    <div class="text-color-black">
       <h3>สินค้าทั้งหมด</h3>
       <p>สินค้าทั้งหมด ทีพวกเรามี</p>
     </div>
@@ -39,7 +39,7 @@
           {% endif %}
           <div class="card-body">
             <h5 class="card-title font-weight-bold">
-              {{ pd.name|linebreaks|truncatechars_html:26 }}
+              {{ pd.name|linebreaks|truncatechars_html:18 }}
             </h5>
 
             <p>ราคา {{ pd.price }} บาท/{{pd.unit}}</p>
@@ -58,13 +58,13 @@
             
             {% if user.is_authenticated%}
 
-            <a href="{% url 'add-to-cart-page' pd.id %}" class="button-black"
+            <a href="{% url 'add-to-cart-page' pd.id %}" class="button-dark-blue"
               >เพิ่มใส่ตะกร้า</a
             >
 
             {% else %}
 
-            <a href="{% url 'login'%}" class="button-black">สั่งชื่อ</a>
+            <a href="{% url 'login'%}" class="button-dark-blue">เพิ่มใส่ตะกร้า</a>
 
             {% endif %}
             

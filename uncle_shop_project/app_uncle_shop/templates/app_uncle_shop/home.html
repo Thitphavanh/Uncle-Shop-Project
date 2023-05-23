@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="container-fluid mt-4">
-  <div class="text-color-white">
+  <div class="text-color-black">
     <h3>สินค้าใหม่</h3>
     <p>สินค้า ล่าสุด</p>
   </div>
@@ -40,7 +40,7 @@
         {% endif %}
         <div class="card-body">
           <h5 class="card-title font-weight-bold">
-            {{ pd.name|linebreaks|truncatechars_html:26 }}
+            {{ pd.name|linebreaks|truncatechars_html:18 }}
           </h5>
 
           <p class="card-title">ราคา {{ pd.price }} บาท/{{pd.unit}}</p>
@@ -59,7 +59,7 @@
 
           {% endif %} {% if pd.instock == True %}
 
-          <a href="#" class="button-black">สั่งชื่อ</a>
+          <a href="#" class="button-dark-blue">เพิ่มใส่ตะกร้า</a>
 
           {% else %}
 
@@ -76,7 +76,7 @@
 
 
 <div class="container-fluid mt-4">
-  <div class="text-color-white">
+  <div class="text-color-black">
       <center>
         <a href="{% url 'all-product-page' %}"> <h1>สินค้าทั้งหมดของพวกเรา</h1></a>
       </center>
@@ -116,7 +116,7 @@
         {% endif %}
         <div class="card-body">
           <h5 class="card-title font-weight-bold">
-            {{ pd.name|linebreaks|truncatechars_html:30 }}
+            {{ pd.name|linebreaks|truncatechars_html:18 }}
           </h5>
 
           <p>ราคา {{ pd.price }} บาท/{{pd.unit}}</p>

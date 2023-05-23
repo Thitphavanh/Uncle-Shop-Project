@@ -1,0 +1,33 @@
+{% extends 'app_uncle_shop/index.html' %} 
+
+{% block content %}
+
+<style>
+  .text-color {
+    color: white;
+  }
+</style>
+<div class="container">
+  <div class="text-color">
+    <h3>ยืนยันการสมัคร</h3>
+    {% if status == 'Found' %}
+    <div class="alert alert-success alert-dismissible">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close"
+        >&times;</a
+      >
+      <strong>ยืนยันการสมัครสำเร็จ</strong> คุณลงทะเบียนสำเร็จแล้ว!
+    </div>
+
+    {% else %}
+    <div class="alert alert-danger alert-dismissible">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close"
+        >&times;</a
+      >
+      <strong>ไม่สามารถยืนยันการสมัครได้!</strong> กรุณาตรวจสอบอีเมลของคุณอีกครั้ง!
+    </div>
+
+    {% endif %}
+  </div>
+</div>
+<div style="padding: 20px"></div>
+{% endblock content %}
