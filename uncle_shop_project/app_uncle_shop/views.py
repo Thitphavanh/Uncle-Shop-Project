@@ -362,10 +362,10 @@ def order_prodcut(request):
         elif od.shipping == 'kerry':
             shipping_cost = sum(
                 [20 if i == 0 else 8 for i in range(count)])
-        elif od.shipping == '่j&t':
+        elif od.shipping == 'j&t':
             shipping_cost = sum(
                 [20 if i == 0 else 9 for i in range(count)])
-        elif od.shipping == '่thailandpost':
+        elif od.shipping == 'thailandpost':
             shipping_cost = sum(
                 [20 if i == 0 else 12 for i in range(count)])
         else:
