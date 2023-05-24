@@ -5,7 +5,7 @@
 <html>
   <body>
     <div class="container">
-      <div class="text-color-white">
+      <div class="text-color-black">
         <h3>รายการสั่งซื้อทั้งหมด</h3>
       </div>
       <table>
@@ -36,7 +36,7 @@
             </td>
             <td>
               {% if od.paid %} 
-              <i class="fa fa-check-square-o" style="font-size:14px;color:green;"> จ่ายแล้ว </i>
+              <i class="fa fa-check-square-o" style="font-size:14px;color:#ff0000;"> จ่ายแล้ว </i>
               
               {% else %}
               <a href="{% url 'upload-slip-page' od.orderid %}" class="button-dark-blue">
@@ -47,6 +47,39 @@
           </tr>
           {% endfor %}
       </table>
+      <div style="padding: 20px"></div>
+      <ul class="pagination justify-content-end">
+        {% if allorder.has_previous and allorder.has_next != True %}
+        <li class="page-item"><a class="page-link" href="?page={{allorder.previous_page_number}}">
+          หน้าก่อน </a>
+        </li>
+        <li class="page-item"><a class="page-link" href="?page={{allorder.number|add:-2}}">{{allorder.number|add:-2}}</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{allorder.number|add:-1}}">{{allorder.number|add:-1}}</a></li>
+        <li class="page-item active"><a class="page-link" href="?page={{allorder.number}}">{{allorder.number}}</a></li>
+        <li class="page-item disabled"><a class="page-link" href=""> หน้าถัดไป </a></li>
+        {% endif %}
+      
+        {% if allorder.has_previous and allorder.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{allorder.previous_page_number}}">
+          หน้าก่อน </a>
+        </li>
+        <li class="page-item"><a class="page-link" href="?page={{allorder.number|add:-1}}">{{allorder.number|add:-1}}</a></li>
+        <li class="page-item active"><a class="page-link" href="?page={{allorder.number}}">{{allorder.number}}</a></li>
+        <li class="page-item"><a class="page-link"  href="?page={{allorder.number|add:1}}">{{allorder.number|add:1}}</a></li>
+        <li class="page-item"><a class="page-link"  href="?page={{allorder.next_page_number}}"> หน้าถัดไป </a></li>
+        {% endif %}
+      
+        {% if allorder.has_next and allorder.has_previous != True %}
+        <li class="page-item disabled"><a class="page-link" href="">
+          หน้าก่อน </a>
+        </li>
+        <li class="page-item active"><a class="page-link" href="?page={{allorder.number}}">{{allorder.number}}</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{allorder.number|add:1}}">{{allorder.number|add:1}}</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{allorder.number|add:2}}">{{allorder.number|add:2}}</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{allorder.next_page_number}}"> หน้าถัดไป </a></li>
+        {% endif %}
+      </ul> 
+      <a class="pagination justify-content-end" <i style="font-size:18px;color:grey;"> หน้า {{allorder.number}} จาก {{allorder.paginator.num_pages}} </i></a>
       <div style="padding: 20px"></div>
     </div>
   </body>

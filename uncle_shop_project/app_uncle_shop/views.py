@@ -376,6 +376,9 @@ def order_prodcut(request):
             shipping_cost += 10
         od.shipping_cost = shipping_cost
 
+    paginator = Paginator(order_pending, 4)
+    page = request.GET.get('page')
+    order_pending = paginator.get_page(page)
     context['allorder'] = order_pending
 
     return render(request, 'app_uncle_shop/order-product.html', context)

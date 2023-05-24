@@ -56,7 +56,7 @@
             <td>
             {% if od.paid and od.slip %}
 					  <a href="{% url 'update-status-page' od.orderid 'cancel' %}"><i class="fa fa-check-square-o"
-							style="font-size:14px;color:green;">จ่ายแล้ว</i></a>
+							style="font-size:14px;color:#03254c;">จ่ายแล้ว</i></a>
 
 					  {% elif od.paid == False and not od.slip %}
 

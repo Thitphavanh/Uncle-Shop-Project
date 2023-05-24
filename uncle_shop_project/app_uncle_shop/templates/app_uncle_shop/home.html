@@ -43,8 +43,8 @@
             {{ pd.name|linebreaks|truncatechars_html:18 }}
           </h5>
 
-          <p class="card-title">ราคา {{ pd.price }} บาท/{{pd.unit}}</p>
-
+          {% comment %} <h5 class="card-title">ราคา {{ pd.price }} บาท/{{pd.unit}}</h5> {% endcomment %}
+          <p>ราคา {{ pd.price }} บาท/{{pd.unit}}</p>
           <!-- <p>{{ pd.detail|linebreaks|truncatechars_html:40 }}</p> -->
 
           {% if pd.quantity > 0 %}
