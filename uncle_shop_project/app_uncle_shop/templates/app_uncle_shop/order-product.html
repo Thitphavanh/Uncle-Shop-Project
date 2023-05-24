@@ -3,12 +3,84 @@
 {% block content %}
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Nunito:400,700");
+
+      * {
+        transition: all 0.3s ease-out;
+      }
+
+      html,
+      body {
+        height: 100%;
+        font-family: "Nunito", sans-serif;
+        font-size: 16px;
+      }
+
+      {% comment %} .container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+      } {% endcomment %}
+
+      h3 {
+        color: #262626;
+        font-size: 17px;
+        line-height: 24px;
+        font-weight: 700;
+        margin-bottom: 4px;
+      }
+
+      p {
+        font-size: 17px;
+        font-weight: 400;
+        line-height: 20px;
+        color: #666666;
+
+        &.small {
+          font-size: 14px;
+        }
+      }
+
+      .table {
+        top: 0px;
+        position: relative;
+        background-color: #f2f8f9;
+        border-radius: 4px;
+        text-decoration: none;
+        z-index: 0;
+        overflow: hidden;
+        border: 1px solid #f2f8f9;
+        box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.1);
+        
+
+        &:hover {
+          transition: all 0.2s ease-out;
+          box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+          top: -4px;
+          border: 1px solid #cccccc;
+          background-color: white;
+        }
+        &:hover:before {
+          transform: scale(2.15);
+        }
+      } 
+
+
+    </style>
+  </head>
   <body>
     <div class="container">
       <div class="text-color-black">
         <h3>รายการสั่งซื้อทั้งหมด</h3>
       </div>
-      <table>
+      <div style="padding: 5px"></div>
+      <table class="table">
           <tr style="font-size: 14px;">
             <th>รหัสคำสั่งซื้อ</th>
             <th>เวลา</th>
@@ -39,7 +111,7 @@
               <i class="fa fa-check-square-o" style="font-size:14px;color:#ff0000;"> จ่ายแล้ว </i>
               
               {% else %}
-              <a href="{% url 'upload-slip-page' od.orderid %}" class="button-dark-blue">
+              <a href="{% url 'upload-slip-page' od.orderid %}" class="button-darken-blue">
                 อัปโหลดใบบิล
               </a> 
               {% endif %}
@@ -47,7 +119,7 @@
           </tr>
           {% endfor %}
       </table>
-      <div style="padding: 20px"></div>
+      <div style="padding: 5px"></div>
       <ul class="pagination justify-content-end">
         {% if allorder.has_previous and allorder.has_next != True %}
         <li class="page-item"><a class="page-link" href="?page={{allorder.previous_page_number}}">

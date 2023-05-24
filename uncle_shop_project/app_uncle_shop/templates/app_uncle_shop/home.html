@@ -2,145 +2,222 @@
 
 {% block content %}
 
-<div class="container-fluid mt-4">
-  <div class="text-color-black">
-    <h3>สินค้าใหม่</h3>
-    <p>สินค้า ล่าสุด</p>
-  </div>
-  <div class="row">
-    {% for pd in product %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Nunito:400,700");
 
-    <div class="col-sm-4">
-      <div class="card" style="width: 400; height: 440; border-radius: 0;">
-        {% if pd.image %}
-        <img
-          class="card-img-top"
-          src="{{ pd.image.url }}"
-          width="400"
-          height="300"
-        />
+      * {
+        transition: all 0.3s ease-out;
+      }
 
-        /> {% elif pd.imageurl != None %}
-        <img
-          class="card-img-top"
-          src="{{ pd.imageurl }}"
-          width="400"
-          height="300"
-        />
+      html,
+      body {
+        height: 100%;
+        font-family: "Nunito", sans-serif;
+        font-size: 16px;
+      }
 
-        {% else %}
+      {% comment %} .container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+      } {% endcomment %}
 
-        <img
-          class="card-img-top"
-          src="/media/default.png"
-          width="400"
-          height="300"
-        />
+      h3 {
+        color: #262626;
+        font-size: 17px;
+        line-height: 24px;
+        font-weight: 700;
+        margin-bottom: 4px;
+      }
 
-        {% endif %}
-        <div class="card-body">
-          <h5 class="card-title font-weight-bold">
-            {{ pd.name|linebreaks|truncatechars_html:18 }}
-          </h5>
+      p {
+        font-size: 17px;
+        font-weight: 400;
+        line-height: 20px;
+        color: #666666;
 
-          {% comment %} <h5 class="card-title">ราคา {{ pd.price }} บาท/{{pd.unit}}</h5> {% endcomment %}
-          <p>ราคา {{ pd.price }} บาท/{{pd.unit}}</p>
-          <!-- <p>{{ pd.detail|linebreaks|truncatechars_html:40 }}</p> -->
+        &.small {
+          font-size: 14px;
+        }
+      }
 
-          {% if pd.quantity > 0 %}
 
-          <p >จำนวน {{pd.quantity}} {{pd.unit}}</p>
+      .card2 {
+        display: block;
+        top: 0px;
+        position: relative;
+        max-width: 400px;
+        background-color: #f2f8f9;
+        border-radius: 4px;
+        text-decoration: none;
+        z-index: 0;
+        overflow: hidden;
+        border: 1px solid #f2f8f9;
+        box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.1);
+        
 
-          {% else %}
+        &:hover {
+          transition: all 0.2s ease-out;
+          box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+          top: -4px;
+          border: 1px solid #cccccc;
+          background-color: white;
+        }
+        &:hover:before {
+          transform: scale(2.15);
+        }
+      }
+    </style>
+  </head>
 
-          <p>
-            <font color="red">ขออภัย สินค้าหมด</font>
-          </p>
-
-          {% endif %} {% if pd.instock == True %}
-
-          <a href="#" class="button-dark-blue">เพิ่มใส่ตะกร้า</a>
-
-          {% else %}
-
-          <a href="#" class="button-orange">กำลังเพิ่มสินค้า</a>
-
-          {% endif %}
-        </div>
-      </div>
-      <br /><br />
+<body>
+  <div class="container-fluid mt-4">
+    <div class="text-color-black">
+      <h3>สินค้าใหม่</h3>
+      <p>สินค้า ล่าสุด</p>
     </div>
-    {% endfor %}
-  </div>
-</div>
-
-
-<div class="container-fluid mt-4">
-  <div class="text-color-black">
-      <center>
-        <a href="{% url 'all-product-page' %}"> <h1>สินค้าทั้งหมดของพวกเรา</h1></a>
-      </center>
-      <hr />
-    <h3>สินค้าใหม่</h3>
-    <p>สินค้า ล่าสุด</p>
-  </div>
-  <div class="row">
-    {% for pd in product %}
-    <div class="col-sm-4">
-      <div class="card" style="width: 400; height: 500px; border-radius: 0;">
-        {% if pd.image %}
-        <img
-          class="card-img-top"
-          src="{{ pd.image.url }}"
-          width="400"
-          height="300"
-        />
-
-        /> {% elif pd.imageurl != None %}
-        <img
-          class="card-img-top"
-          src="{{ pd.imageurl }}"
-          width="400"
-          height="300"
-        />
-
-        {% else %}
-
-        <img
-          class="card-img-top"
-          src="/media/default.png"
-          width="400"
-          height="300"
-        />
-
-        {% endif %}
-        <div class="card-body">
-          <h5 class="card-title font-weight-bold">
-            {{ pd.name|linebreaks|truncatechars_html:18 }}
-          </h5>
-
-          <p>ราคา {{ pd.price }} บาท/{{pd.unit}}</p>
-
-          <!-- <p>{{ pd.detail|linebreaks|truncatechars_html:40 }}</p> -->
-
-          {% if pd.quantity > 0 %}
-
-          <p>จำนวน {{pd.quantity}} {{pd.unit}}</p>
-
+    <div class="row">
+      {% for pd in product %}
+  
+      <div class="col-sm-4">
+        <div class="card2">
+          {% if pd.image %}
+          <img
+            class="card-img-top"
+            src="{{ pd.image.url }}"
+            width="400"
+            height="300"
+          />
+  
+          /> {% elif pd.imageurl != None %}
+          <img
+            class="card-img-top"
+            src="{{ pd.imageurl }}"
+            width="400"
+            height="300"
+          />
+  
           {% else %}
-
-          <p>
-            <font color="red">ต้องการสั่งซื้อสินค้า กรุณาสอบถามได้</font>
-          </p>
-          <a href="#" class="button-orange">สั่งซื้อล่วงหน้าได้</a>
-
+  
+          <img
+            class="card-img-top"
+            src="/media/default.png"
+            width="400"
+            height="300"
+          />
+  
           {% endif %}
+          <div class="card-body">
+            <h5 class="card-title font-weight-bold">
+              {{ pd.name|linebreaks|truncatechars_html:18 }}
+            </h5>
+  
+            <p>ราคา {{ pd.price }} บาท/{{pd.unit}}</p>
+  
+  
+            {% if pd.quantity > 0 %}
+  
+            <p >จำนวน {{pd.quantity}} {{pd.unit}}</p>
+  
+            {% else %}
+  
+            <p>
+              <font color="red">ขออภัย สินค้าหมด</font>
+            </p>
+  
+            {% endif %} {% if pd.instock == True %}
+  
+            <a href="#" class="button-dark-blue">เพิ่มใส่ตะกร้า</a>
+  
+            {% else %}
+  
+            <a href="#" class="button-orange">กำลังเพิ่มสินค้า</a>
+  
+            {% endif %}
+          </div>
         </div>
+        <br /><br />
       </div>
-
-      <br /><br />
+      {% endfor %}
     </div>
-    {% endfor %}
   </div>
-  </div>
+  
+  
+  <div class="container-fluid mt-4">
+    <div class="text-color-black">
+        <center>
+          <a href="{% url 'all-product-page' %}"> <h1>สินค้าทั้งหมดของพวกเรา</h1></a>
+        </center>
+        <hr />
+      <h3>สินค้าใหม่</h3>
+      <p>สินค้า ล่าสุด</p>
+    </div>
+    <div class="row">
+      {% for pd in product %}
+      <div class="col-sm-4">
+        <div class="card2" style="width: 400; height: 500px; border-radius: 0;">
+          {% if pd.image %}
+          <img
+            class="card-img-top"
+            src="{{ pd.image.url }}"
+            width="400"
+            height="300"
+          />
+  
+          /> {% elif pd.imageurl != None %}
+          <img
+            class="card-img-top"
+            src="{{ pd.imageurl }}"
+            width="400"
+            height="300"
+          />
+  
+          {% else %}
+  
+          <img
+            class="card-img-top"
+            src="/media/default.png"
+            width="400"
+            height="300"
+          />
+  
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title font-weight-bold">
+              {{ pd.name|linebreaks|truncatechars_html:18 }}
+            </h5>
+  
+            <p>ราคา {{ pd.price }} บาท/{{pd.unit}}</p>
+  
+            <!-- <p>{{ pd.detail|linebreaks|truncatechars_html:40 }}</p> -->
+  
+            {% if pd.quantity > 0 %}
+  
+            <p>จำนวน {{pd.quantity}} {{pd.unit}}</p>
+  
+            {% else %}
+  
+            <p>
+              <font color="red">ต้องการสั่งซื้อสินค้า กรุณาสอบถามได้</font>
+            </p>
+            <a href="#" class="button-orange">สั่งซื้อล่วงหน้าได้</a>
+  
+            {% endif %}
+          </div>
+        </div>
+  
+        <br /><br />
+      </div>
+      {% endfor %}
+    </div>
+    </div>
+</body>
+</html>
 {% endblock content %}

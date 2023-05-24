@@ -53,6 +53,54 @@
   tr:hover {
     background-color: #2a9df4;
   }
+
+  h3 {
+    color: #262626;
+    font-size: 17px;
+    line-height: 24px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  p {
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #666666;
+
+    &.small {
+      font-size: 14px;
+    }
+  }
+
+
+  * {
+    transition: all 0.3s ease-out;
+  }
+
+  .table {
+    top: 0px;
+    position: relative;
+    background-color: #f2f8f9;
+    border-radius: 1px;
+    text-decoration: none;
+    z-index: 0;
+    overflow: hidden;
+    border: 1px solid #f2f8f9;
+    box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.1);
+    
+
+    &:hover {
+      transition: all 0.2s ease-out;
+      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+      top: -4px;
+      border: 1px solid #cccccc;
+      background-color: white;
+    }
+    &:hover:before {
+      transform: scale(2.15);
+    }
+  } 
 </style>
 
 <div class="container">
@@ -92,7 +140,8 @@
   <div class="text-color">
     <h3>รายการสั่งซื้อสินค้า</h3>
   </div>
-  <table>
+  <div style="padding: 5px"></div>
+  <table class="table">
       <tr>
         <th>ไอดี</th>
         <th>ชื่อสินค้า</th>
@@ -117,7 +166,7 @@
         <td><h5>{{total|intcomma}}</h5></td>
       </tr>
   </table>
-  <div style="padding: 10px"></div>
+  <div style="padding: 5px"></div>
 
   <form method="POST">
     {% csrf_token %}
