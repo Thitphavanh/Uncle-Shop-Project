@@ -53,15 +53,81 @@
       background-color: #000000;
     }
 
-    div.container {
-      border-radius: 1px;
-      background-color: #f2f2f2;
-      padding: 20px;
-      margin-bottom: 40px;
+    h3 {
+      color: #262626;
+      font-size: 17px;
+      line-height: 24px;
+      font-weight: 700;
+      margin-bottom: 4px;
     }
+  
+    p {
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 20px;
+      color: #666666;
+  
+      &.small {
+        font-size: 14px;
+      }
+    }
+  
+  
+    * {
+      transition: all 0.3s ease-out;
+    }
+
+    div.card-container {
+     top: 0px;
+    position: relative;
+    border-radius: 0px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin-bottom: 40px;
+    text-decoration: none;
+    z-index: 0;
+    overflow: hidden;
+    border: 1px solid #f2f8f9;
+    box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.1);
+
+    &:hover {
+      transition: all 0.2s ease-out;
+      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+      top: -4px;
+      border: 1px solid #cccccc;
+      background-color: white;
+    }
+    &:hover:before {
+      transform: scale(2.15);
+    }
+  } 
+
+  .table {
+    top: 0px;
+    background-color: #f2f8f9;
+    border-radius: 1px;
+    text-decoration: none;
+    z-index: 0;
+    overflow: hidden;
+    border: 1px solid #f2f8f9;
+    box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.1);
+    
+
+    &:hover {
+      transition: all 0.2s ease-out;
+      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+      top: -4px;
+      border: 1px solid #cccccc;
+      background-color: white;
+    }
+    &:hover:before {
+      transform: scale(2.15);
+    }
+  } 
+
   </style>
   <body>
-    <div class="container">
+    <div class="card-container">
       <div class="text-color">
       <h3>ข้อมูลการจัดส่ง</h3>
       <p>รหัสคำสั่งซื้อ: {{order_pending.orderid}} </p>
@@ -81,7 +147,7 @@
             ประเภทการจัดส่ง: ขนส่งอื่นๆ  
         {% endif %}<br />
     
-        {% if order_pending.payment == 'paynow' %} 
+        {% if order_pending.payment == 'paynow'%} 
             ชำระผ่าน: เก็บเงินต้นทาง
         {% elif order_pending.payment == 'cod' %} 
             ชำระผ่าน: เก็บเงินปลายทาง 
@@ -97,7 +163,7 @@
       <div class="text-color">
         <!-- <h3>ລາຍການສັ່ງຊື້ສິນຄ້າ</h3> -->
       </div>
-      <table>
+      <table class="table">
           <tr>
             <th>ไอดี</th>
             <th>ชื่อสินค้า</th>
@@ -138,7 +204,7 @@
               name="tracking_number"
             />
           </div>
-          <button type="submit" class="button">Submit</button>
+          <button type="submit" class="button-dark-blue">ยืนยัน</button>
         </form>
         </form>
         <br>
@@ -147,6 +213,7 @@
           <h3>ยอดโอนทั้งหมด: {{total|add:order_pending.shipping_cost|intcomma}} บาท</h3>
         </div>
       </div>
+      <div style="padding: 20px"></div>
   </body>
 </html>
 {% endblock content %}
