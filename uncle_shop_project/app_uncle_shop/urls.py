@@ -18,6 +18,7 @@ urlpatterns = [
     path('updatestatus/<str:orderid>/<str:status>/', update_paid, name='update-status-page'),
     path('updatetracking/<str:orderid>/', update_tracking, name='update-tracking-page'),
     path('myorder/<str:orderid>/', my_order, name='my-order-page'),
+    path('graph/', pie_chart, name='graph-page'),
 ]
 
 #       <!-- {% block content %} {% endblock content %} -->

@@ -414,7 +414,7 @@ def all_order_prodcut(request):
         if od.payment == 'cod':
             shipping_cost += 10
         od.shipping_cost = shipping_cost
-        
+
     paginator = Paginator(order_pending, 4)
     page = request.GET.get('page')
     order_pending = paginator.get_page(page)
@@ -568,3 +568,18 @@ def my_order(request, orderid):
                "total": total, "count": count}
 
     return render(request, 'app_uncle_shop/my-order.html', context)
+
+
+def pie_chart(request):
+    all_products = AllProduct.objects.all()
+    product_name = []
+    product_quantity = []
+
+    for pd in all_products[:10]:
+        product_name.append(pd.name)
+        product_quantity.append(pd.quantity)
+
+    context = {"product_name": str(
+        product_name), "product_quantity": product_quantity}
+
+    return render(request, 'app_uncle_shop/graph.html', context)
