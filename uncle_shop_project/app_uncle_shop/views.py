@@ -85,7 +85,7 @@ def add_product(request):
     if request.user.profile.usertype != 'admin':
         return redirect('home-page')
 
-    if request.method == 'POST' and request.FILES['imageupload']:
+    if request.method == 'POST':
         data = request.POST.copy()
         name = data.get('name')
         price = data.get('price')
@@ -102,14 +102,18 @@ def add_product(request):
         new.quantity = quantity
         new.unit = unit
 
-        file_image = request.FILES['imageupload']
-        file_image_name = request.FILES['imageupload'].name.replace(' ', '')
-        # print('File Images:', file_image)
-        # print('File Images:', file_image_name)
-        file_system_storage = FileSystemStorage()
-        file_name = file_system_storage.save(file_image_name, file_image)
-        upload_file_url = file_system_storage.url(file_name)
-        new.images = upload_file_url[6:]
+        try:
+            file_image = request.FILES['imageupload']
+            file_image_name = request.FILES['imageupload'].name.replace(
+                ' ', '')
+            # print('File Images:', file_image)
+            # print('File Images:', file_image_name)
+            file_system_storage = FileSystemStorage()
+            file_name = file_system_storage.save(file_image_name, file_image)
+            upload_file_url = file_system_storage.url(file_name)
+            new.images = upload_file_url[6:]
+        except:
+            new.images = '/default.png'
 
         new.save()
 
@@ -124,6 +128,18 @@ def all_products(request):
     product = paginator.get_page(page)
     context = {'product': product}
     return render(request, 'app_uncle_shop/all-product.html', context)
+
+
+def product_category(request, code):
+    select_category = Category.objects.get(id=code)
+    product = AllProduct.objects.filter(
+        category_name=select_category).order_by('id').reverse()
+    paginator = Paginator(product, 6)
+    page = request.GET.get('page')
+    product = paginator.get_page(page)
+    context = {'product': product,
+               'category_name': select_category.category_name}
+    return render(request, 'app_uncle_shop/all-product-category.html', context)
 
 
 def register(request):

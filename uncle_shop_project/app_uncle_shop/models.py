@@ -23,7 +23,17 @@ class Profile(models.Model):
         return self.user.first_name
 
 
+class Category(models.Model):
+    category_name = models.CharField(max_length=250, default='สินค้าทั่วไป')
+    detail = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return self.category_name
+
+
 class AllProduct(models.Model):
+    category_name = models.ForeignKey(
+        Category, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=100)
     price = models.CharField(max_length=100)
     detail = models.TextField(null=True, blank=True)

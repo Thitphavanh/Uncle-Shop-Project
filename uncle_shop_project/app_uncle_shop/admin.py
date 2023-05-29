@@ -44,3 +44,19 @@ class OrderPendingAdmin(admin.ModelAdmin):
 
 
 admin.site.register(OrderPending, OrderPendingAdmin)
+
+
+class VerifyEmailAdmin(admin.ModelAdmin):
+    list_display = ['id', 'user', 'approved']
+    list_editable = ['approved']
+
+
+admin.site.register(VerifyEmail, VerifyEmailAdmin)
+
+
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ['id', 'category_name', 'detail']
+    list_editable = ['category_name', 'detail']
+
+
+admin.site.register(Category, CategoryAdmin)

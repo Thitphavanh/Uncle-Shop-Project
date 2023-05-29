@@ -15,9 +15,13 @@ urlpatterns = [
     path('orderproduct/', order_prodcut, name='order-product-page'),
     path('allorderproduct/', all_order_prodcut, name='all-order-product-page'),
     path('uploadslip/<str:orderid>/', upload_slip, name='upload-slip-page'),
-    path('updatestatus/<str:orderid>/<str:status>/', update_paid, name='update-status-page'),
-    path('updatetracking/<str:orderid>/', update_tracking, name='update-tracking-page'),
+    path('updatestatus/<str:orderid>/<str:status>/',
+         update_paid, name='update-status-page'),
+    path('updatetracking/<str:orderid>/',
+         update_tracking, name='update-tracking-page'),
     path('myorder/<str:orderid>/', my_order, name='my-order-page'),
+    path('category/<int:code>/', product_category,
+         name='all-product-category-page'),
     path('graph/', pie_chart, name='graph-page'),
 ]
 

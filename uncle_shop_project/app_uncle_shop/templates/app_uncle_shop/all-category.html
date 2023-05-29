@@ -1,0 +1,3 @@
+{% for cat in categories %}
+    <a class="dropdown-item" href="{% url 'all-product-category-page' cat.id  %}">{{cat.category_name}}</a>
+{% endfor %}
