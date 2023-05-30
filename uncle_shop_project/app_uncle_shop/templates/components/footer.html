@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -18,7 +19,7 @@
         width: 100%;
         text-align: left;
         font: bold 16px sans-serif;
-        padding: 55px 50px;
+        padding: 20px 50px;
       }
 
       .footer-distributed .footer-left,
@@ -68,7 +69,7 @@
       }
 
       .footer-distributed .footer-center i {
-        background-color: #33383b;
+        background-color: #03254c;
         color: #ffffff;
         font-size: 25px;
         width: 38px;
@@ -139,16 +140,28 @@
         margin-bottom: 20px;
       }
 
-      .footer-distributed .footer-icons {
+      .footer-distributed .footer-icons-facebook {
         margin-top: 25px;
       }
 
-      .footer-distributed .footer-icons a {
+      .footer-distributed .footer-icons-youtube {
+        margin-top: 25px;
+      }
+
+      .footer-distributed .footer-icons-medium {
+        margin-top: 25px;
+      }
+
+      .footer-distributed .footer-icons-github {
+        margin-top: 25px;
+      }
+
+      .footer-distributed .footer-icons-facebook a {
         display: inline-block;
         width: 35px;
         height: 35px;
         cursor: pointer;
-        background-color: #33383b;
+        background-color: #1877F2;
         border-radius: 2px;
 
         font-size: 20px;
@@ -156,7 +169,58 @@
         text-align: center;
         line-height: 35px;
 
-        margin-right: 3px;
+        margin-left: 15px;
+        margin-bottom: 5px;
+      }
+
+      .footer-distributed .footer-icons-youtube a {
+        display: inline-block;
+        width: 35px;
+        height: 35px;
+        cursor: pointer;
+        background-color: #ff0000;
+        border-radius: 2px;
+
+        font-size: 20px;
+        color: #ffffff;
+        text-align: center;
+        line-height: 35px;
+
+        margin-left: 15px;
+        margin-bottom: 5px;
+      }
+
+      .footer-distributed .footer-icons-medium a {
+        display: inline-block;
+        width: 35px;
+        height: 35px;
+        cursor: pointer;
+        background-color: black;
+        border-radius: 2px;
+
+        font-size: 20px;
+        color: #ffffff;
+        text-align: center;
+        line-height: 35px;
+
+        margin-left: 15px;
+        margin-bottom: 5px;
+      }
+
+      .footer-distributed .footer-icons-github a {
+        display: inline-block;
+        width: 35px;
+        height: 35px;
+        cursor: pointer;
+        background-color: #ffffff; 
+        border-radius: 2px;
+
+        font-size: 20px;
+        color: #171515;
+        text-align: center;
+        line-height: 35px;
+
+        margin-left: 15px;
         margin-bottom: 5px;
       }
 
@@ -210,21 +274,32 @@
 
         <div>
           <i class="fa fa-envelope"></i>
-          <p><a href="#">www.uncle-shop.com</a></p>
+          <p><a href="https://www.uncle-engineer.com/">www.uncle-engineer.com</a></p>
         </div>
       </div>
 
       <div class="footer-right">
         <p class="footer-company-about">
-          <span>About the company</span>
-          Our Website built with Python Django
+          <span>สิ่งที่พวกเราทำ</span>
+          ลุงวิศวกร
+          สอนคำนวณเป็นตัวละครของเพจที่เราสร้างขึ้นมาเพื่อให้ทุกคนจดจำได้ง่าย
+          คำว่าลุงฟังแล้วดูน่าเข้าหา น่าเข้าไปปรึกษาด้วย
+          และมีความเป็นกันเองมากที่สุด พยายามเข้าใจผู้ที่เริ่มต้นศึกษาเทคโนโลยี
         </p>
 
-        <div class="footer-icons">
-          <a href="#"><i class="fa fa-facebook"></i></a>
-          <a href="#"><i class="fa fa-twitter"></i></a>
-          <a href="#"><i class="fa fa-linkedin"></i></a>
-          <a href="#"><i class="fa fa-github"></i></a>
+        <div class="row">
+          <div class="footer-icons-facebook">
+            <a href="https://facebook.com/UncleEngineer"><i class="fa fa-facebook"></i></a>
+          </div>
+          <div class="footer-icons-youtube">
+            <a href="https://www.youtube.com/@UncleEngineer"><i class="fa fa-youtube-play"></i></a>
+          </div>
+          <div class="footer-icons-github">
+            <a href="https://github.com/UncleEngineer"><i class="fa fa-github"></i></a>
+          </div>
+          <div class="footer-icons-medium">
+            <a href="loong.wissawakorn@gmail.com"><i class="fa fa-medium"></i></a>
+          </div>
         </div>
       </div>
     </footer>

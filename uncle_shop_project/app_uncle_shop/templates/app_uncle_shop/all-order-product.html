@@ -1,18 +1,89 @@
 {% extends 'app_uncle_shop/index.html' %} 
 {% load humanize %} 
 {% block content %}
+<!DOCTYPE html>
 <html>
-  <head>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    @import url("https://fonts.googleapis.com/css?family=Nunito:400,700");
+
+    * {
+      transition: all 0.3s ease-out;
+    }
+
+    html,
+    body {
+      height: 100%;
+      font-family: "Nunito", sans-serif;
+      font-size: 16px;
+    }
+
+    {% comment %} .container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    } {% endcomment %}
+
+    h3 {
+      color: #262626;
+      font-size: 17px;
+      line-height: 24px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    p {
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 20px;
+      color: #666666;
+
+      &.small {
+        font-size: 14px;
+      }
+    }
+
+    .table {
+      top: 0px;
+      position: relative;
+      background-color: #f2f8f9;
+      border-radius: 4px;
+      text-decoration: none;
+      z-index: 0;
+      overflow: hidden;
+      border: 1px solid #f2f8f9;
+      box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.1);
+      
+
+      &:hover {
+        transition: all 0.2s ease-out;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+        top: -4px;
+        border: 1px solid #cccccc;
+        background-color: white;
+      }
+      &:hover:before {
+        transform: scale(2.15);
+      }
+    } 
+  </style>
+</head>
+  <body>
     <div class="container">
       <div class="text-color-black">
-        <div class="text-color-white">
+        <div class="text-color-black">
           <h3>สินค้าทั้งหมด (admin)</h3>
         </div>
-        <table>
+        <div style="padding: 5px"></div>
+        <table class="table">
           <tr style="font-size: 14px;">
             <th>ไอดี การสั่งซื้อ</th>
             <th>ชื่อลูกค้า</th>
-            <th>เวลา</th>
+            {% comment %} <th>เวลา</th> {% endcomment %}
             <th>เลขพัสดุขนส่ง</th>
             <th>ค่าขนส่ง</th>
             <th>ยอดรวม</th>
@@ -24,7 +95,7 @@
           <tr style="font-size: 14px;">
             <td><a href="{% url 'update-tracking-page' od.orderid %}" style="font-size: 14px;">{{od.orderid}}</a></td>
             <td>{{od.name}}</td>
-            <td>{{od.stamp}}</td>
+            {% comment %} <td>{{od.stamp}}</td> {% endcomment %}
             <td>
               {% if od.tracking_number != None %}
                 {{od.tracking_number}}
@@ -41,7 +112,7 @@
               {% if od.slip %} 
               <a href="{{od.slip.url}}">
                 <i class="fa fa-address-card-o" 
-                style="font-size:14px;color:orangered;">
+                style="font-size:14px;color:#ff0000;">
                ดูใบบิล
                 </i>
               </a>
@@ -56,7 +127,7 @@
             <td>
             {% if od.paid and od.slip %}
 					  <a href="{% url 'update-status-page' od.orderid 'cancel' %}"><i class="fa fa-check-square-o"
-							style="font-size:14px;color:#03254c;">จ่ายแล้ว</i></a>
+							style="font-size:14px;color:#2a8df4;">จ่ายแล้ว</i></a>
 
 					  {% elif od.paid == False and not od.slip %}
 
@@ -73,7 +144,7 @@
           {% endfor %}
         </table>
       </div>
-      <div style="padding: 20px"></div>
+      <div style="padding: 5px"></div>
       <ul class="pagination justify-content-end">
         {% if allorder.has_previous and allorder.has_next != True %}
         <li class="page-item"><a class="page-link" href="?page={{allorder.previous_page_number}}">
@@ -108,7 +179,7 @@
       <a class="pagination justify-content-end" <i style="font-size:18px;color:grey;"> หน้า {{allorder.number}} จาก {{allorder.paginator.num_pages}} </i></a>
       <div style="padding: 20px"></div>
     </div>
-  </head>
+  </body>
 </html>
 {% endblock content %} 
 

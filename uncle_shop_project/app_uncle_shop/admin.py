@@ -55,8 +55,8 @@ admin.site.register(VerifyEmail, VerifyEmailAdmin)
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['id', 'category_name', 'detail']
-    list_editable = ['category_name', 'detail']
+    list_display = ['id', 'category_name']
+    list_editable = ['category_name']
 
 
 admin.site.register(Category, CategoryAdmin)
