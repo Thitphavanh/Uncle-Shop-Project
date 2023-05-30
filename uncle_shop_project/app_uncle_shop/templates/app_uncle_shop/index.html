@@ -41,7 +41,7 @@
             </a>
           </li>
 
-          <li class="nav-item">
+          {% comment %} <li class="nav-item">
             <a class="nav-link" href="{% url 'about-page' %}"
               ><font color="black">เกี่ยวกับเรา</font>
             </a>
@@ -50,6 +50,12 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'contact-page' %}"
               ><font color="black">ติดต่อเรา</font></a
+            >
+          </li> {% endcomment %}
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'graph-page' %}"
+              ><font color="black">กราฟจำนวนสินค้า</font></a
             >
           </li>
 
@@ -127,21 +133,14 @@
       </div>
     </nav>
     <div style="padding: 20px"></div>
-    <div style="padding: 20px"></div>
-    <div class="text-center">
-      <h3>Uncle Shop</h3>
-      <p>
-        บริษัท คอนส์ โรโบติกส์ จำกัด
-      </p>
-    </div>
     <div class="container" style="margin-top: 20px;">
       
     {% block content %}
     {% endblock content %} 
     
-    {% block script %} 
-    {% endblock script %}
+    {% block script %} {% endblock script %}
     </div>
+    <div style="padding: 20px"></div>  
     </div>
   </body>
 </html>

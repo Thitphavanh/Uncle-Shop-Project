@@ -80,6 +80,9 @@
 <body>
   <div class="container-fluid mt-4">
     <div class="text-color-black">
+      <center>
+        <a href="{% url 'all-product-page' %}"><h1><font color="#03265c">สินค้าทั้งหมดของพวกเรา</font> </h1></a>
+      </center>
       <h3>สินค้าใหม่</h3>
       <p>สินค้า ล่าสุด</p>
     </div>
@@ -117,14 +120,16 @@
           <div class="card-body">
             <h5 class="card-title font-weight-bold">
               {{ pd.name|linebreaks|truncatechars_html:18 }}
-            </h5>
+            </h5> 
   
-            <p>ราคา {{ pd.price }} บาท/{{pd.unit}}</p>
+            {% comment %} <p>ราคา {{ pd.price }} บาท/{{pd.unit}}</p> {% endcomment %}
+
+            <p>{{ pd.detail|linebreaks|truncatechars_html:28 }}</p>
   
   
             {% if pd.quantity > 0 %}
   
-            <p >จำนวน {{pd.quantity}} {{pd.unit}}</p>
+            {% comment %} <p >จำนวน {{pd.quantity}} {{pd.unit}}</p> {% endcomment %}
   
             {% else %}
   
@@ -132,13 +137,13 @@
               <font color="red">ขออภัย สินค้าหมด</font>
             </p>
   
-            {% endif %} {% if pd.instock == True %}
+            {% comment %} {% endif %} {% if pd.instock == True %}
   
             <a href="#" class="button-dark-blue">เพิ่มใส่ตะกร้า</a>
   
             {% else %}
   
-            <a href="#" class="button-orange">กำลังเพิ่มสินค้า</a>
+            <a href="#" class="button-orange">กำลังเพิ่มสินค้า</a> {% endcomment %}
   
             {% endif %}
           </div>
@@ -150,7 +155,7 @@
   </div>
   
   
-  <div class="container-fluid mt-4">
+  {% comment %} <div class="container-fluid mt-4">
     <div class="text-color-black">
         <center>
           <a href="{% url 'all-product-page' %}"> <h1>สินค้าทั้งหมดของพวกเรา</h1></a>
@@ -217,7 +222,7 @@
       </div>
       {% endfor %}
     </div>
-    </div>
+    </div> {% endcomment %}
 </body>
 </html>
 {% endblock content %}

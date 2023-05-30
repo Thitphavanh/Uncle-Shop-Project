@@ -42,15 +42,15 @@
             </a>
           </li>
 
-          <li class="nav-item">
+          {% comment %} <li class="nav-item">
             <a class="nav-link" href="{% url 'about-page' %}"
               ><font color="black">เกี่ยวกับเรา</font>
             </a>
-          </li>
+          </li> {% endcomment %}
 
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'contact-page' %}"
-              ><font color="black">ติดต่อเรา</font></a
+            <a class="nav-link" href="{% url 'graph-page' %}"
+              ><font color="black">กราฟจำนวนสินค้า</font></a
             >
           </li>
 
@@ -130,12 +130,7 @@
 
     {% include "components/slide.html" %} 
     <div style="padding: 20px"></div>
-    <div class="text-center">
-      <h3>Uncle Shop</h3>
-      <h4 >
-        บริษัท คอนส์ โรโบติกส์ จำกัด
-      </h4>
-    </div>   
+
     <div class="container" style="margin-top: 20px;">
     {% comment %} {% include "components/card_hover_effect.html" %}  {% endcomment %}
     {% block content %} 
@@ -145,6 +140,14 @@
   
     {% block script %} {% endblock script %}
     </div>
+    {% comment %} <div class="text-center">
+      <h5>Uncle Shop</h5>
+      <h3 >
+        บริษัท คอนส์ โรโบติกส์ จำกัด
+      </h3>
+    </div>  {% endcomment %}
+    <div style="padding: 20px"></div> 
+    {% include "components/footer.html" %}  
     </div>
   </body>
 </html>

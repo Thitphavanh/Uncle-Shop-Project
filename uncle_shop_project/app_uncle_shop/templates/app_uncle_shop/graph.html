@@ -1,8 +1,8 @@
 {% extends 'app_uncle_shop/index.html' %}
 {% block header %}
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script> -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script> -->
+{% comment %} <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script> {% endcomment %}
 
 {% endblock header %} 
 
@@ -13,12 +13,9 @@
     color: black;
   }
 </style>
-
-
- 
     <h3>Graph</h3>
 
-<div>
+{% comment %} <div>
     <canvas id="myChart" style="width:100%;max-width:900px"></canvas>
 </div>
   
@@ -45,7 +42,7 @@
         }
       }
     });
-    </script>
+    </script> {% endcomment %}
 
   <!-- <canvas id="myChart" style="width: 100%; max-width: 600px"></canvas>
     
@@ -83,12 +80,13 @@
     } -->
   {% comment %} </script> {% endcomment %}
 
-  <!-- <div>
+  <div>
     <canvas id="myChart" style="width: 100%; max-width: 1000px"></canvas>
   </div>
 
   <script>
     const xValues = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
+    
 
     new Chart("myChart", {
       type: "line",
@@ -97,7 +95,7 @@
         datasets: [
           {
             data: {{product_quantity}},
-            borderColor: "#ff4500",
+            borderColor: "#ff0020",
             fill: false,
           },
         ],
@@ -106,7 +104,7 @@
         legend: { display: false },
       },
     });
-  </script> -->
+  </script>
   <div style="padding: 20px"></div>
 
 {% endblock content %}
