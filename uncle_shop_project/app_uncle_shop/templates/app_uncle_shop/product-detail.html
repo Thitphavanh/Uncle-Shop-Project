@@ -1,0 +1,19 @@
+{% extends 'mywebsite/base.html' %} 
+{% load markdown_extras %} 
+{% block content%}
+
+<style>
+  .text-color {
+    color: white;
+  }
+</style>
+<div class="container">
+  <div class="text-color">
+    <h3>{{all_products.name}}</h3>
+    <img src="{{all_products.images.url}}" width="500px" /><br />
+    {{all_products.detail | markdown | safe}}
+    <h4>ລາຄາ {{all_products.price}}</h4>
+  </div>
+</div>
+<div style="padding: 20px"></div>
+{% endblock content %}

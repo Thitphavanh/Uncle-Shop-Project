@@ -17,11 +17,14 @@ urlpatterns = [
     path('uploadslip/<str:orderid>/', upload_slip, name='upload-slip-page'),
     path('updatestatus/<str:orderid>/<str:status>/',
          update_paid, name='update-status-page'),
-    path('updatetracking/<str:orderid>/', update_tracking, name='update-tracking-page'),
+    path('updatetracking/<str:orderid>/',
+         update_tracking, name='update-tracking-page'),
     path('myorder/<str:orderid>/', my_order, name='my-order-page'),
     path('category/<int:code>/', product_category,
          name='all-product-category-page'),
     path('graph/', pie_chart, name='graph-page'),
+    path('productdetail/<int:productid>/',
+         product_detail, name='product-detail-page'),
 ]
 
 #       <!-- {% block content %} {% endblock content %} -->

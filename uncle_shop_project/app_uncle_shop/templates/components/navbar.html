@@ -1,0 +1,288 @@
+{% block content %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Dark Light Mode</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="style.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Kanit&display=swap");
+
+      :root {
+        --primary-color: rgb(255, 255, 255);
+        --text-color-primary: rgb(255, 255, 255);
+        --primary-color-blue: #2a8df4;
+        --text-color-second: rgba(255, 255, 255, 0.7);
+        --background: #121213;
+        --box-shadow: 0 5px 20px 1px rgba(0, 0, 0, 0.5);
+      }
+
+      [data-theme="light"] {
+        --primary-color: #121213;
+        --text-color-primary: rgb(66, 66, 66);
+        --text-color-second: rgba(66, 66, 66, 0.7);
+        --background: rgb(255, 255, 255);
+      }
+
+      body {
+        background-color: var(--background);
+        {% comment %} margin: 0; {% endcomment %}
+        color: var(--text-color-primary);
+      }
+
+      * {
+        font-family: "Kanit", sans-serif;
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+      }
+
+      h1 {
+        font-size: 100px;
+        margin-bottom: 0;
+      }
+
+      section {
+        min-height: 50vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      h2 {
+        color: var(--text-color-second);
+        font-size: 30px;
+        font-weight: normal;
+      }
+      .title-group {
+        text-align: center;
+      }
+      nav {
+        position: fixed;
+        z-index: 10;
+        font-size: 24px;
+        letter-spacing: 1px;
+        padding: 25px;
+        width: 100vw;
+        background: rgb(0 0 0 / 50%);
+      }
+      a {
+        margin-right: 25px;
+        color: var(--primary-color);
+        text-decoration: none;
+        border-bottom: 3px solid transparent;
+        font-weight: bold;
+      }
+
+      a:hover,
+      a:focus {
+        color: var(--primary-color-blue);
+        border-bottom: 3px solid;
+      }
+
+      .theme-switch-container {
+        display: flex;
+        align-items: center;
+        z-index: 100;
+        position: fixed;
+        right: 25px;
+        top: 30px;
+      }
+
+      .theme-switch-container span {
+        margin-right: 10px;
+        font-size: 1rem;
+      }
+      .toggle-text {
+        position: relative;
+        top: -4px;
+        right: 5px;
+        color: var(--text-color-primary);
+      }
+      .theme-switch {
+        display: inline-block;
+        height: 34px;
+        position: relative;
+        width: 60px;
+      }
+
+      .theme-switch input {
+        display: none;
+      }
+
+      .slider {
+        background: var(--primary-color-blue);
+        bottom: 0;
+        cursor: pointer;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        transition: 0.4s;
+      }
+
+      .slider::before {
+        background: #fff;
+        content: "";
+        bottom: 4px;
+        height: 26px;
+        left: 4px;
+        position: absolute;
+        transition: 0.4s;
+        width: 26px;
+      }
+      input:checked + .slider::before {
+        transform: translateX(26px);
+      }
+
+      .slider.round {
+        border-radius: 34px;
+      }
+
+      .slider::before {
+        border-radius: 50%;
+      }
+
+      .fa.fa-sun-o,
+      .fa.fa-moon-o {
+        font-size: 30px;
+        margin-right: 5px;
+      }
+
+      {% comment %} .fa.fa-youtube-play,
+      .fa.fa-facebook-square,
+      .fa.fa-twitter-square,
+      .fa.fa-medium,
+      .fa.fa-github {
+        font-size: 100px;
+        margin-right: 50px;
+        cursor: pointer;
+        color: var(--primary-color);
+      }
+
+      .fa.fa-youtube-play:hover,
+      .fa.fa-facebook-square:hover,
+      .fa.fa-twitter-square:hover,
+      .fa.fa-medium:hover,
+      .fa.fa-github:hover {
+        color: var(--text-color-primary);
+      } {% endcomment %}
+
+      .project-container {
+        display: flex;
+      }
+
+      .image-container {
+        border: 1px solid --text-color-second;
+        border-radius: 2px;
+        box-shadow: var(--box-shadow);
+        padding: 10px 20px;
+        background: var(--background);
+        margin-right: 25px;
+        width: auto;
+      }
+
+      img {
+        width: 300px;
+        height: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <section id="home">
+      <div class="title-group">
+        <img src="{% static 'images/kmd_logo.jpg' %}" width="500px" /><br />
+      </div>
+    </section>
+    
+    <div class="theme-switch-container">
+      <span id="toggle-icon">
+        <span class="toggle-text">Dark Mode</span>
+        <i class="fa fa-moon-o"></i>
+      </span>
+      <label class="theme-switch">
+        <input type="checkbox" />
+        <div class="slider round"></div>
+      </label>
+    </div>
+    <nav id="nav">
+      <a href="#home">ABOUT US</a>
+      <a href="#project">SERVICE</a>
+      <a href="#contact">Our Works</a>
+      <a href="#home">PARTNERS</a>
+      <a href="#project">CONTENT</a>
+      <a href="#contact">KMD CRAFT COOFFEE</a>
+      <a href="#">CONTACT US</a>
+    </nav>
+
+    {% comment %}
+    <section id="project">
+      <h1>KMD all project</h1>
+      <div class="project-container">
+        <div class="image-container">
+          <h2>Hardware project</h2>
+          <img src="img/undraw_hardware_dark.svg" alt="" id="image1" />
+        </div>
+        <div class="image-container">
+          <h2>Software project</h2>
+          <img src="img/undraw_software_dark.svg" alt="" id="image2" />
+        </div>
+        <div class="image-container">
+          <h2>AI project</h2>
+          <img src="img/undraw_ai_dark.svg" alt="" id="image3" />
+        </div>
+      </div>
+    </section>
+    {% endcomment %} {% comment %}
+    <section id="contact">
+      <div class="social-icon">
+        <i class="fa fa-youtube-play"></i>
+        <i class="fa fa-facebook-square"></i>
+        <i class="fa fa-twitter-square"></i>
+        <i class="fa fa-medium"></i>
+        <i class="fa fa-github"></i>
+      </div>
+    </section>
+    {% endcomment %}
+    <script>
+      const switchToggle = document.querySelector('input[type="checkbox"]');
+      const toggleIcon = document.getElementById("toggle-icon");
+      const nav = document.getElementById("nav");
+      const image1 = document.getElementById("image1");
+      const image2 = document.getElementById("image2");
+      const image3 = document.getElementById("image3");
+
+      function switchMode(e) {
+        if (e.target.checked) {
+          document.documentElement.setAttribute("data-theme", "light");
+          lightMode();
+          imageSwitchMode("light");
+        } else {
+          document.documentElement.setAttribute("data-theme", "dark");
+          darkMode();
+          imageSwitchMode("dark");
+        }
+      }
+
+      function lightMode() {
+        toggleIcon.children[0].textContent = "Light Mode";
+        toggleIcon.children[1].classList.replace("fa-moon-o", "fa-sun-o");
+        nav.style.backgroundColor = "rgb(255 255 255 / 50%)";
+      }
+
+      function darkMode() {
+        toggleIcon.children[0].textContent = "Dark Mode";
+        toggleIcon.children[1].classList.replace("fa-sun-o", "fa-moon-o");
+        nav.style.backgroundColor = "rgb(0 0 0 / 50%)";
+      }
+
+      switchToggle.addEventListener("change", switchMode);
+    </script>
+  </body>
+</html>
+{% endblock content %}

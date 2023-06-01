@@ -493,8 +493,10 @@ def update_paid(request, orderid, status):
     order_pending = OrderPending.objects.get(orderid=orderid)
     if status == 'confirm':
         order_pending.paid = True
+        order_pending.confirmed = True
     elif status == 'cancel':
         order_pending.paid = False
+        order_pending.confirmed = False
     order_pending.save()
     return redirect('all-order-product-page')
 
@@ -589,7 +591,7 @@ def my_order(request, orderid):
 def pie_chart(request):
     all_products = AllProduct.objects.all()
     product_name = []
-    product_quantity = []
+    product_quantity = [] 
 
     for pd in all_products[:10]:
         product_name.append(pd.name)
@@ -599,3 +601,14 @@ def pie_chart(request):
         product_name), "product_quantity": product_quantity}
 
     return render(request, 'app_uncle_shop/graph.html', context)
+
+def product_detail(request,productid):
+    all_products = AllProduct.objects.get(id=productid)
+    context = {"all_products":all_products}
+    return render(request, 'app_uncle_shop/product-detail.html', context)
+
+
+def test_markdown(request):
+    text = "*FullSelf-Driving* is the best&nbsp;**Innovation**"
+    context = {"text": text}
+    return render(request, 'app_uncle_shop/test-markdown.html', context)

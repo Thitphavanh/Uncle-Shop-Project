@@ -8,6 +8,15 @@ body {
   height: 100%;
   font-family: Arial;
 }
+.navbar {
+  position: fixed;
+  z-index: 10;
+  font-size: 24px;
+  letter-spacing: 1px;
+  padding: 25px;
+  width: 100vw;
+  background: rgb(0 0 0 / 50%);
+}
 
 .card {
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);

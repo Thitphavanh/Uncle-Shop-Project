@@ -17,6 +17,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="{% static 'css/style.css' %}" rel="stylesheet" />
 
+    <style>
+      .navbar {
+        position: fixed;
+        z-index: 10;
+      
+        letter-spacing: 1px;
+        padding: 25px;
+        width: 100vw;
+        background: rgb(255 255 255 / 50%);
+      }
+      </style> 
+
     {% block header %} 
     {% endblock header %}
     
@@ -26,19 +38,12 @@
       <a class="navbar-brand" href="{% url 'home-page' %}"
         ><font color="#2a9df4">Uncle Shop</font></a
       >
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#collapsibleNavbar"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
+
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
             <a class="nav-link" href="{% url 'all-product-page' %}"
-              ><font color="black">สินค้าทั้งหมด</font>
+              ><font color="black">สินค้าทั้งหมด ({% show_all_product %})</font>
             </a>
           </li>
 
@@ -82,10 +87,14 @@
             <a class="nav-link" href="{% url 'my-cart-page' %}"
               ><font color="black">ตะกร้าสินค้า</font>
               <span class="badge bg-primary"
-                ><font color="black">{{user.profile.cartquan}}</font></span
+                ><font color="white">{{user.profile.cartquan}}</font></span
               >
             </a>
           </li>
+
+          {% comment %} <li class="nav-item">
+            <button onclick="myFunction()">mode</button>
+          </li> {% endcomment %}
          
           {% endif %} 
 
@@ -127,6 +136,7 @@
         {% endif %}
       </div>
     </nav>
+    <div style="padding: 46px"></div>
 
     {% include "components/slide.html" %} 
     <div style="padding: 20px"></div>
@@ -135,7 +145,7 @@
     {% comment %} {% include "components/card_hover_effect.html" %}  {% endcomment %}
     {% block content %} 
     
-    {% endblock %}
+    {% endblock content %}
 
   
     {% block script %} {% endblock script %}
@@ -143,5 +153,12 @@
     <div style="padding: 20px"></div> 
     {% include "components/footer.html" %}  
     </div>
+    {% comment %} <script>
+      function myFunction() {
+         var element = document.body;
+         element.classList.toggle("dark-mode");
+      }
+      </script> {% endcomment %}
   </body>
+
 </html>

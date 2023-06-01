@@ -1,4 +1,5 @@
 {% extends 'app_uncle_shop/base.html' %} 
+{% load markdown_extras %} 
 {% block content %}
 
 <!DOCTYPE html>
@@ -118,7 +119,12 @@
           {% endif %}
           <div class="card-body">
             
-            <h3>{{ pd.name|linebreaks|truncatechars_html:18 }}</h3>
+            <h3>{{ pd.name|linebreaks|truncatechars_html:18 }}
+            <a href="{% url 'product-detail-page' pd.id %}" target="_blank">ลายระเอียด</a>
+
+            </h3>
+
+            
 
             <p>ราคา {{ pd.price }} บาท/{{pd.unit}}</p>
   
