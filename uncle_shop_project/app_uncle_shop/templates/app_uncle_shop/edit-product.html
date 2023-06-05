@@ -109,9 +109,15 @@
       <div class="form-group">
         <label for="all_category">เลือกหมวดหมู่สินค้า:</label>
         <select name="all_category" id="all_category" type="select">
-          {% for cat in all_category %}
-            <option>{{cat.category_name}}</option>
-          {% endfor %}
+
+        {% for cat in all_category %}
+          {% if cat.category_name == all_products.category_name.category_name %}
+          <option selected="selected">{{cat.category_name}}</option>
+          {% else %}
+          <option>{{cat.category_name}}</option>
+          {% endif %}
+        {% endfor %}
+
           </select>
       </div> 
 
