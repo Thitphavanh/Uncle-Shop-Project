@@ -1,0 +1,219 @@
+{% extends 'app_uncle_shop/index.html' %} 
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<style>
+
+
+  input[type="text"],
+  select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    box-sizing: border-box;
+  }
+
+  textarea[id="detail"],
+  select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    box-sizing: border-box;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    background-color: #03254c;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 0px;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #000000;
+  }
+
+  h3 {
+    color: #262626;
+    font-size: 17px;
+    line-height: 24px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  p {
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #666666;
+
+    &.small {
+      font-size: 14px;
+    }
+  }
+
+
+  * {
+    transition: all 0.3s ease-out;
+  }
+
+  div.card-container {
+   top: 0px;
+  position: relative;
+  border-radius: 0px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  margin-bottom: 40px;
+  text-decoration: none;
+  z-index: 0;
+  overflow: hidden;
+  border: 1px solid #f2f8f9;
+  box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.1);
+
+  &:hover {
+    transition: all 0.2s ease-out;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+    top: -4px;
+    border: 1px solid #cccccc;
+    background-color: white;
+  }
+  &:hover:before {
+    transform: scale(2.15);
+  }
+} 
+</style>
+<body>
+<div class="card-container">
+  <div class="text-color-black">
+    
+    <p>หน้านี้ดูได้เฉพาะ (Admin)</p>
+    <h5>แก้ไขสินค้า: {{all_products.name}}</h5>
+    <h5>Category: {{all_products.category_name}}</h5>
+    <img src="{{all_products.images.url}}" width="500px" /><br />
+
+    <br />
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <div class="form-group">
+        <label for="all_category">เลือกหมวดหมู่สินค้า:</label>
+        <select name="all_category" id="all_category" type="select">
+          {% for cat in all_category %}
+            <option>{{cat.category_name}}</option>
+          {% endfor %}
+          </select>
+      </div> 
+
+
+      <div class="form-group">
+        <form action="/action_page.php">
+        <label for="name">ชื่อสินค้า:</label>
+        <input
+          type="text"
+          id="name"
+          placeholder="ชื่อสินค้า..."
+          name="name"
+          value="{{all_products.name}}"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="price">ราคา:</label>
+        <input
+          type="text"
+          id="price"
+          placeholder="ราคา..."
+          name="price"
+          value="{{all_products.price}}"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="detail">รายละเอียด:</label>
+        <textarea
+          rows="5"
+          id="detail"
+          placeholder="รายละเอียด..."
+          name="detail"
+        >{{all_products.detail}}</textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="imageurl">เลือก URL รูปภาพ:</label>
+        <input
+          type="text"
+          id="imageurl"
+          placeholder="เลือก URL รูปภาพ..."
+          name="imageurl"
+          value="{{all_products.imageurl}}"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="quantity">จำนวน:</label>
+        <input
+          type="text"
+          id="quantity"
+          placeholder="จำนวน..."
+          name="quantity"
+          value="{{all_products.quantity}}"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="unit">หน่วย:</label>
+        <input
+          type="text"
+          id="unit"
+          placeholder="หน่วย..."
+          name="unit"
+          value="{{all_products.unit}}"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="imageupload">เลือกรูปภาพ:</label>
+        <input
+          type="file"
+          id="imageupload"
+          placeholder="เลือกรูปภาพ..."
+          name="imageupload"
+        />
+      </div>
+
+      
+      <div class="-form-group">
+        <p>มีสินค้าในคลังสินค้าหรือไม่?:</p>
+        {% if all_products.instock %}
+          <input type="radio" id="yes_instock" name="instock" value="yes_instock" checked/>
+          <label for="">มี</label><br>
+          <input type="radio" id="no_instock"  name="instock"value="no_instock" />
+          <label for="">ไม่มี</label><br>
+
+          {% else %}
+
+          <input type="radio" id="yes_instock" name="instock" value="yes_instock" />
+          <label for="">มี</label><br>
+          <input type="radio" id="no_instock"  name="instock"value="no_instock" checked/>
+          <label for="">ไม่มี</label><br>
+          {% endif %}
+      </div>
+      <button type="submit" class="button-dark-blue">ยืนยัน</button>
+    </form>
+  </form>
+  </div>
+</div>
+</body>
+</html>
+{% endblock content %}

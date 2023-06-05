@@ -4,6 +4,7 @@ from .models import *
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from django.core.paginator import Paginator
 
@@ -65,6 +66,13 @@ from django.core.paginator import Paginator
 #     link = token
 #     send_messenger = f'ສະບາຍ {new_member_name} \n\n {content} Verify Link: {link}'
 #     send_email(email, subject, send_messenger)
+
+def check_not_addmin(request):
+    if request.user.profile.usertype != 'admin':
+        return True
+    else:
+        return False
+
 
 def home(request):
     product = AllProduct.objects.all().order_by('id').reverse()[:3]
@@ -490,10 +498,18 @@ def upload_slip(request, orderid):
 def update_paid(request, orderid, status):
     if request.user.profile.usertype != 'admin':
         return redirect('home-page')
+
     order_pending = OrderPending.objects.get(orderid=orderid)
     if status == 'confirm':
         order_pending.paid = True
         order_pending.confirmed = True
+        order_product = OrderProduct.objects.filter(orderid=orderid)
+
+        for op in order_product:
+            product = AllProduct.objects.get(id=op.productid)
+            product.quantity = product.quantity - op.quantity
+            product.save()
+
     elif status == 'cancel':
         order_pending.paid = False
         order_pending.confirmed = False
@@ -591,7 +607,7 @@ def my_order(request, orderid):
 def pie_chart(request):
     all_products = AllProduct.objects.all()
     product_name = []
-    product_quantity = [] 
+    product_quantity = []
 
     for pd in all_products[:10]:
         product_name.append(pd.name)
@@ -602,9 +618,10 @@ def pie_chart(request):
 
     return render(request, 'app_uncle_shop/graph.html', context)
 
-def product_detail(request,productid):
+
+def product_detail(request, productid):
     all_products = AllProduct.objects.get(id=productid)
-    context = {"all_products":all_products}
+    context = {"all_products": all_products}
     return render(request, 'app_uncle_shop/product-detail.html', context)
 
 
@@ -612,3 +629,55 @@ def test_markdown(request):
     text = "*FullSelf-Driving* is the best&nbsp;**Innovation**"
     context = {"text": text}
     return render(request, 'app_uncle_shop/test-markdown.html', context)
+
+
+@login_required
+def edit_product(request, productid):
+    check = check_not_addmin(request)
+    if check:
+        return redirect("home-page")
+    all_products = AllProduct.objects.get(id=productid)
+    all_category = Category.objects.all()
+
+    if request.method == 'POST':
+        data = request.POST.copy()
+        name = data.get('name')
+        price = data.get('price')
+        detail = data.get('detail')
+        imageurl = data.get('imageurl')
+        quantity = data.get('quantity')
+        unit = data.get('unit')
+        category = data.get('all_category')
+        category = Category.objects.get(category_name=category)
+        instock = data.get('instock')
+
+        all_products.name = name
+        all_products.price = price
+        all_products.detail = detail
+        all_products.imageurl = imageurl
+        all_products.quantity = quantity
+        all_products.unit = unit
+        all_products.category_name = category
+
+        if instock == 'yes_instock':
+            all_products.instock = True
+        else:
+            all_products.instock = False
+
+        # print([request.FILES])
+        if 'imageupload' in request.FILES:
+            file_image = request.FILES['imageupload']
+            file_image_name = request.FILES['imageupload'].name.replace(
+                ' ', '')
+
+            file_system_storage = FileSystemStorage()
+            file_name = file_system_storage.save(file_image_name, file_image)
+            upload_file_url = file_system_storage.url(file_name)
+            all_products.images = upload_file_url[6:]
+        else:
+            print("No")
+        all_products.save()
+
+    all_products = AllProduct.objects.get(id=productid)
+    context = {"all_products": all_products, "all_category": all_category}
+    return render(request, 'app_uncle_shop/edit-product.html', context)

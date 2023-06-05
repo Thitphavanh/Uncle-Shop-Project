@@ -138,7 +138,15 @@
               <font color="red">สินค้าหมด กรุณาสอบถาม</font>
             </p>
 
-            {% endif %} {% if pd.instock == True %}
+            {% endif %} 
+
+            {% if user.is_authenticated and user.profile.usertype == 'admin' %}
+
+            <a href="{% url 'edit-product-page' pd.id %}" class="button-black">แก้ไขสินค้า</a>
+ 
+            {% endif %}
+            
+            {% comment %} {% if pd.instock == True %}
             
             {% if user.is_authenticated%}
 
@@ -146,17 +154,17 @@
               >เพิ่มใส่ตะกร้า</a
             >
 
-            {% else %}
+            {% else %} {% endcomment %}
 
-            <a href="{% url 'login'%}" class="button-dark-blue">เพิ่มใส่ตะกร้า</a>
-
+           
+{% comment %} 
             {% endif %}
             
             {% else %}
 
             <a href="#" class="button-orange">สินค้าหมด</a>
 
-            {% endif %}
+            {% endif %} {% endcomment %}
        
         </div>
       </div>

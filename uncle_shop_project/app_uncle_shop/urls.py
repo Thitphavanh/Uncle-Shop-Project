@@ -25,6 +25,7 @@ urlpatterns = [
     path('graph/', pie_chart, name='graph-page'),
     path('productdetail/<int:productid>/',
          product_detail, name='product-detail-page'),
+    path('editproduct/<int:productid>/', edit_product, name='edit-product-page'),
 ]
 
 #       <!-- {% block content %} {% endblock content %} -->
