@@ -100,9 +100,7 @@
     <p>หน้านี้ดูได้เฉพาะ (Admin)</p>
     <h5>แก้ไขสินค้า: {{all_products.name}}</h5>
     <h5>Category: {{all_products.category_name}}</h5>
-    <img src="{{all_products.images.url}}" width="500px" /><br />
-
-    <br />
+    <img src="{{all_products.images.url}}" width="500px" /><br /><br />
     <form method="POST" enctype="multipart/form-data">
       {% csrf_token %}
 

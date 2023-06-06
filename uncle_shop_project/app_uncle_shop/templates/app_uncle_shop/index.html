@@ -82,7 +82,7 @@
           {% if user.is_authenticated and user.profile.usertype == 'member' %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'order-product-page' %}"
-              ><font color="black">รายการสั่งซื้อทั้งหมด</font>
+              ><font color="black">รายการที่สั่งซื้อ</font>
             </a>
           </li>
 
@@ -104,7 +104,7 @@
           {% if user.is_authenticated and user.profile.usertype == 'admin' %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'all-order-product-page' %}"
-              ><font color="black">รายการสั่งซื้อทั้งหมด</font>
+              ><font color="black">รายการที่สั่งซื้อ</font>
             </a>
           </li>
           <li class="nav-item">
@@ -124,11 +124,11 @@
           class="rounded-circle"
         />&nbsp&nbsp
 
-        <p style="color: #2a9df4; margin: 5px">
+        <a style="color: #2a9df4; margin: 5px">
           สวัสดี! {{user.first_name}} {{user.last_name}}&nbsp&nbsp
-        </p>
+        </a>
 
-        <a class="button-blue" href="{% url 'logout' %}">ออกจากระบบ</a>
+        <a class="button-blue" href="{% url 'logout' %}">ออกจากระบบ</a>&nbsp
 
         {% else %}
 

@@ -128,7 +128,7 @@
 
             <p>ราคา {{ pd.price }} บาท/{{pd.unit}}</p>
   
-            {% if pd.quantity > 0 %}
+            {% if pd.quantity > 0 and pd.instock == True %}
 
             <p>จำนวน {{pd.quantity}} {{pd.unit}}</p>
 
