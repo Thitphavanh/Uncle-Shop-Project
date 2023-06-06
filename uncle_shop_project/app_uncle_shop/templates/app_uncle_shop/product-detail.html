@@ -1,10 +1,10 @@
-{% extends 'mywebsite/base.html' %} 
+{% extends 'app_uncle_shop/base.html' %} 
 {% load markdown_extras %} 
 {% block content%}
 
 <style>
   .text-color {
-    color: white;
+    color: black;
   }
 </style>
 <div class="container">
@@ -12,7 +12,7 @@
     <h3>{{all_products.name}}</h3>
     <img src="{{all_products.images.url}}" width="500px" /><br />
     {{all_products.detail | markdown | safe}}
-    <h4>ລາຄາ {{all_products.price}}</h4>
+    <h4>ราคา {{all_products.price}}</h4>
   </div>
 </div>
 <div style="padding: 20px"></div>
