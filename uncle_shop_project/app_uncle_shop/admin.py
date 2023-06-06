@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import *
+from django_summernote.admin import SummernoteModelAdmin
 
 
 admin.site.site_header = "Uncle Shop Official Website"
@@ -14,7 +15,8 @@ class ProfileAdmin(admin.ModelAdmin):
 admin.site.register(Profile, ProfileAdmin)
 
 
-class AllProductAdmin(admin.ModelAdmin):
+class AllProductAdmin(SummernoteModelAdmin):
+    summernote_fields = ('__all__')
     list_display = ['id', 'name', 'price', 'instock']
     list_editable = ['price', 'instock']
 
