@@ -54,6 +54,7 @@
         top: 0px;
         position: relative;
         max-width: 400px;
+        height: 500px;
         background-color: #f2f8f9;
         border-radius: 4px;
         text-decoration: none;
@@ -61,6 +62,7 @@
         overflow: hidden;
         border: 1px solid #f2f8f9;
         box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.1);
+        border-radius: 1;
         
 
         &:hover {
@@ -74,8 +76,6 @@
           transform: scale(2.15);
         }
       }
-
-
 
     </style>
   </head>
@@ -120,17 +120,17 @@
           <div class="card-body">
             
             <h3>{{ pd.name|linebreaks|truncatechars_html:18 }}
-            <a href="{% url 'product-detail-page' pd.id %}" target="_blank">รายระเอียด</a>
 
             </h3>
-
-            
 
             <p>ราคา {{ pd.price }} บาท/{{pd.unit}}</p>
   
             {% if pd.quantity > 0 and pd.instock == True %}
 
             <p>จำนวน {{pd.quantity}} {{pd.unit}}</p>
+
+            <a href="{% url 'add-to-cart-page' pd.id %}" class="button-dark-blue">เพิ่มใส่ตะกร้า</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <a href="{% url 'product-detail-page' pd.id %}" class="button-blue" target="_blank">รายระเอียด</a>
 
             {% else %}
 
@@ -142,7 +142,7 @@
 
             {% if user.is_authenticated and user.profile.usertype == 'admin' %}
 
-            <a href="{% url 'edit-product-page' pd.id %}" class="button-black">แก้ไขสินค้า</a>
+            <a href="{% url 'edit-product-page' pd.id %}" class="button-red">แก้ไขสินค้า</a>
  
             {% endif %}
             
@@ -154,10 +154,10 @@
               >เพิ่มใส่ตะกร้า</a
             >
 
-            {% else %} {% endcomment %}
+            {% else %} 
 
            
-{% comment %} 
+            {% comment %} 
             {% endif %}
             
             {% else %}
