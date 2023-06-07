@@ -120,12 +120,15 @@
           <div class="card-body">
             <h3 class="card-title font-weight-bold">
               {{ pd.name|linebreaks|truncatechars_html:18 }}
-              <a href="{% url 'product-detail-page' pd.id %}" target="_blank">ลายระเอียด</a>
+              {% comment %} <a href="{% url 'product-detail-page' pd.id %}" target="_blank">ลายระเอียด</a> {% endcomment %}
             </h3> 
   
             {% comment %} <p>ราคา {{ pd.price }} บาท/{{pd.unit}}</p> {% endcomment %}
 
             <p>{{ pd.detail|linebreaks|truncatechars_html:28 }}</p>
+
+            <a href="{% url 'product-detail-page' pd.id %}" class="button-blue" target="_blank">รายระเอียด</a>
+
   
   
             {% if pd.quantity > 0 %}

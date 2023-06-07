@@ -682,6 +682,7 @@ def edit_product(request, productid):
         else:
             print("No")
         all_products.save()
+        return redirect('all-product-page')
 
     all_products = AllProduct.objects.get(id=productid)
     context = {"all_products": all_products, "all_category": all_category}
