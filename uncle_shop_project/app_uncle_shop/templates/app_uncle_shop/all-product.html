@@ -129,17 +129,21 @@
 
             <p>จำนวน {{pd.quantity}} {{pd.unit}}</p>
 
-            <a href="{% url 'add-to-cart-page' pd.id %}" class="button-dark-blue">เพิ่มใส่ตะกร้า</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <a href="{% url 'product-detail-page' pd.id %}" class="button-blue" target="_blank">รายระเอียด</a>
-
             {% else %}
 
             <p>
               <font color="red">สินค้าหมด กรุณาสอบถาม</font>
             </p>
             
-
             {% endif %} 
+
+            {% if user.is_authenticated and user.profile.usertype == 'member' %}
+
+            <a href="{% url 'add-to-cart-page' pd.id %}" class="button-dark-blue">เพิ่มใส่ตะกร้า</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            
+            <a href="{% url 'product-detail-page' pd.id %}" class="button-blue" target="_blank">รายระเอียด</a>
+
+            {% endif %}
 
             {% if user.is_authenticated and user.profile.usertype == 'admin' %}
 
@@ -171,7 +175,7 @@
       </div>
         <br /><br />
       </div>
-    {% endfor %}
+      {% endfor %}
     </div>
     <ul class="pagination justify-content-end">
       {% if product.has_previous and product.has_next != True %}

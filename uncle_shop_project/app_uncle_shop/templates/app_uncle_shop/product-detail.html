@@ -2,22 +2,89 @@
 {% load markdown_extras %} 
 {% block content%}
 
-<style>
-  .text-color {
-    color: black;
-  }
-</style>
-<div class="container">
-  <div class="text-color">
-    <h3>{{all_products.name}}</h3>
-    
-    {% if all_products.images %}
-    <img src="{{all_products.images.url}}" width="450px" height="350px" /><br /><br />
-    {% endif %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      input[type="text"],
+      select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: block;
+        border: 1px solid #ccc;
+        border-radius: 0px;
+        box-sizing: border-box;
+      }
 
-    {{all_products.detail | markdown | safe}}
-    <h4>ราคา {{all_products.price}}</h4>
-  </div>
-</div>
-<div style="padding: 20px"></div>
+      h3 {
+        color: #262626;
+        font-size: 17px;
+        line-height: 24px;
+        font-weight: 700;
+        margin-bottom: 4px;
+      }
+
+      p {
+        font-size: 17px;
+        font-weight: 400;
+        line-height: 20px;
+        color: #666666;
+
+        &.small {
+          font-size: 14px;
+        }
+      }
+
+      * {
+        transition: all 0.3s ease-out;
+      }
+
+      div.card-container {
+        top: 0px;
+        position: relative;
+        border-radius: 0px;
+        background-color: #f2f2f2;
+        padding: 20px;
+        margin-bottom: 40px;
+        text-decoration: none;
+        z-index: 0;
+        overflow: hidden;
+        border: 1px solid #f2f8f9;
+        box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.1);
+
+        &:hover {
+          transition: all 0.2s ease-out;
+          box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+          top: -4px;
+          border: 1px solid #cccccc;
+          background-color: white;
+        }
+        &:hover:before {
+          transform: scale(2.15);
+        }
+      }
+      .text-color {
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card-container">
+      <div class="text-color">
+        <p>{{all_products.name}}</p>
+
+        {% if all_products.images %}
+        <img
+          src="{{all_products.images.url}}"
+          width="50%"
+          height="50%"
+        /><br /><br />
+        {% endif %} {{all_products.detail | markdown | safe}}
+        <p>ราคา {{all_products.price}} บาท</p>
+      </div>
+    </div>
+    <div style="padding: 20px"></div>
+  </body>
+</html>
 {% endblock content %}
