@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.humanize",
     "django_summernote",
+    "rest_framework",
 ]
 
 MIDDLEWARE = [

@@ -26,6 +26,10 @@ urlpatterns = [
     path('productdetail/<int:productid>/',
          product_detail, name='product-detail-page'),
     path('editproduct/<int:productid>/', edit_product, name='edit-product-page'),
+    path('api/allproductapi', all_product_api, name='all-product-api-page'),
+    path('api/productapi/<int:pid>/',
+         product_api, name='product-api-page'),
+    path('api/getproductapi/<int:pid>/', get_product_api, name='get-product-api-page'),
 ]
 
 #       <!-- {% block content %} {% endblock content %} -->

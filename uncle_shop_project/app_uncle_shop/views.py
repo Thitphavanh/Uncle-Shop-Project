@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from .models import *
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.models import User
@@ -7,6 +6,12 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from django.core.paginator import Paginator
+from django.http import *
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from .serializers import *
+
 
 # def generate_token(domain="http://localhost:/8000/confirm/"):
 #     all_char = [chr(i) for i in range(65, 91)]
@@ -681,3 +686,33 @@ def edit_product(request, productid):
     all_products = AllProduct.objects.get(id=productid)
     context = {"all_products": all_products, "all_category": all_category}
     return render(request, 'app_uncle_shop/edit-product.html', context)
+
+
+def all_product_api(request):
+    all_product = AllProduct.objects.all()
+    serializer = AllProductSerializers(all_product, many=True)
+    return JsonResponse(serializer.data, safe=False, json_dumps_params={"ensure_ascii": False})
+
+
+def product_api(request, pid):
+    product = AllProduct.objects.get(id=pid)
+    serializer = AllProductSerializers(product)
+    return JsonResponse(serializer.data, json_dumps_params={"ensure_ascii": False})
+
+
+@api_view(['GET'])
+def get_product_api(request, pid):
+    all_product = AllProduct.objects.get(id=pid)
+    if request.method == 'GET':
+        serializer = AllProductSerializers(all_product)
+        return Response(serializer.data)
+
+
+@api_view(['POST'])
+def post_product_api(request):
+    if request.method == 'POST':
+        serializer = AllProductSerializers(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND)
