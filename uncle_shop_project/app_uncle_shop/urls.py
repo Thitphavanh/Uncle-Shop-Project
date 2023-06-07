@@ -29,7 +29,10 @@ urlpatterns = [
     path('api/allproductapi', all_product_api, name='all-product-api-page'),
     path('api/productapi/<int:pid>/',
          product_api, name='product-api-page'),
-    path('api/getproductapi/<int:pid>/', get_product_api, name='get-product-api-page'),
+    path('api/getproductapi/<int:pid>/', get_product_api),
+    path('api/postproductapi', post_product_api),
+    path('api/updateproductapi/<int:pid>', update_product_api),
+    path('api/deleteproductapi/<int:pid>', delete_product_api),
 ]
 
 #       <!-- {% block content %} {% endblock content %} -->

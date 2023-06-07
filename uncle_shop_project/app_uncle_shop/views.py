@@ -716,3 +716,30 @@ def post_product_api(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND)
+
+
+@api_view(['PUT'])
+def update_product_api(request, pid):
+    if request.method == 'PUT':
+        all_product = AllProduct.objects.get(id=pid)
+        serializer = AllProductSerializers(all_product, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        data = serializer.data
+        data['message'] = 'Updated information'
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND)
+
+
+@api_view(['DELETE'])
+def delete_product_api(request, pid):
+    if request.method == 'DELETE':
+        all_product = AllProduct.objects.get(id=pid)
+        deleted = all_product.delete()
+        data = {}
+        if deleted:
+            data['message'] = 'Deleted information'
+            return Response(data=data, status=status.HTTP_200_OK)
+        else:
+            data['message'] = 'Delete unsuccess'
+        return Response(data=data, status=status.HTTP_404_NOT_FOUND)
