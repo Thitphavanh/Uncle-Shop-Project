@@ -20,8 +20,7 @@
     <style>
       .navbar {
         position: fixed;
-        z-index: 10;
-      
+        z-index: 10
         letter-spacing: 1px;
         padding: 25px;
         width: 100vw;
@@ -46,12 +45,6 @@
               ><font color="black">สินค้าทั้งหมด ({% show_all_product %})</font>
             </a>
           </li>
-
-          {% comment %} <li class="nav-item">
-            <a class="nav-link" href="{% url 'about-page' %}"
-              ><font color="black">เกี่ยวกับเรา</font>
-            </a>
-          </li> {% endcomment %}
 
           <li class="nav-item">
             <a class="nav-link" href="{% url 'graph-page' %}"
@@ -91,11 +84,7 @@
               >
             </a>
           </li>
-
-          {% comment %} <li class="nav-item">
-            <button onclick="myFunction()">mode</button>
-          </li> {% endcomment %}
-         
+        
           {% endif %} 
 
           {% if user.is_authenticated and user.profile.usertype == 'admin' %}

@@ -145,13 +145,11 @@ def all_products(request):
 
 def product_category(request, code):
     select_category = Category.objects.get(id=code)
-    product = AllProduct.objects.filter(
-        category_name=select_category).order_by('id').reverse()
+    product = AllProduct.objects.filter(category_name=select_category).order_by('id').reverse()
     paginator = Paginator(product, 6)
     page = request.GET.get('page')
     product = paginator.get_page(page)
-    context = {'product': product,
-               'category_name': select_category.category_name}
+    context = {'product': product, 'category_name': select_category.category_name}
     return render(request, 'app_uncle_shop/all-product-category.html', context)
 
 
